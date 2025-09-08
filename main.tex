@@ -1,0 +1,397 @@
+\documentclass[dvipsnames,12pt]{article}
+\usepackage{graphicx,float}
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+\usepackage{braket, nicefrac}
+\usepackage{hyperref,mathtools}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{theoremref}
+\usepackage[a4paper, total={6.3in, 9.1in}]{geometry}
+\usepackage{setspace}
+\usepackage{xcolor}
+
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{cor}[theorem]{Corollary}
+\newtheorem{defi}[theorem]{Definition}
+\newtheorem{construction}[theorem]{Construction}
+\title{\Large \textbf{The Betti Numbers of Edge Ideals of Trees and the Regularity Offset}}
+
+\date{}
+
+\begin{document}
+
+\setstretch{1.2}
+\maketitle
+
+\section{Background}
+\subsection{Graphs and clique complexes}
+A simple graph $G$ is the composition of vertex set $V(G)$ and edge set $E(G)$. We use $G^c$ to denote the complement graph of $G$. If $W$ is a subset of $V(G)$, we use $G[W]$ to denote the induced subgraph on $W$.
+
+For a simple graph $G$ whose vertex set is $[n]$, one can identify it with
+a square-free quadratic ideal $I_G$ over a field $k$ via $I_G=(x_ix_j | ij\in E(G))$. We call $I_G$ the edge ideal of $G$.
+
+\begin{defi}
+    Given a graph $G$, where $V(G)=\{x_1,x_2,\cdots,x_n\}$, the clique complex of $G$, denoted by $\Delta G$, is a simplicial complex that consists of $t$-simplicies $(x_{i_1},x_{i_2},\cdots ,x_{i_t})$ whenever $G[\{x_{i_1},x_{i_2},\cdots ,x_{i_t}\}]$ is a complete graph of $t$ vertices.
+\end{defi}
+
+One can observe that the edge ideal $I_G$ is the Stanley-Reisner ideal of $\Delta G^c$. Hence, we have a one-to-one correspondence between the family of simple graphs and the family of clique complexes. Moreover, homology of simplicial complexes $\Delta G^c$ can give Betti numbers of $I_G$ via Hochster's formula.
+
+\begin{theorem}\thlabel{hochster}[Hochster's formula]
+    Let $I_G$ be the edge ideal of a graph $G$. Then for $i\geq 0$ and squarefree degree $\mathbf{b}$,
+    \begin{equation*}
+        \beta_{i,\mathbf{b}}(I_G)=dim_k(\widetilde{H}_{|\mathbf{b}|-i-2}\left(\Delta G^c[supp(\mathbf{b})], k\right)).
+    \end{equation*}
+    If we forget the multigrading, then for $j\geq0$,
+    \begin{equation*}
+        \beta_{i,i+j}(I_G)=\sum_{|W|=i+j}dim_k(\widetilde{H}_{j-2}\left(\Delta G^c[W], k\right)),
+    \end{equation*}
+    where $W$ runs over all the subsets of $V(G)$ of size $i+j$.
+\end{theorem}
+More detailed information on Hochster's formula can be found in \cite{stanley1996combinatorics} and \cite{francisco2014survey}. We now give the definition of Castelnuovo-Mumford regularity of an edge-ideal $I_G$.
+\begin{defi}[Castelnuovo-Mumford regularity]
+    We use $reg(I_G)$ (or $reg(G)$ in short) to denote the Castelnuovo-Mumford regularity of $I_G$. 
+    \begin{equation*}
+    reg(I_G)=max\{j|\beta_{i,i+j}(I_G)\neq0\}.    
+    \end{equation*}
+\end{defi}
+
+To make the following paper more readable, for a subgraph $S\subset G$, we say the subgraph $S$ contribute to the regularity if the multigraded betti number $\beta_{|\mathbf{s}|-reg(G),\mathbf{s}}\neq 0$, where $\mathbf{s}$ is a grading that is all zero but only $1$s on the variables that are corresponding to the vertex set $V(S)$.
+
+By Hochster's formula, the key part of finding the regularity of an edge ideal is to find the largest number $j$, such that the $(j-2)$-nd homology group of a certain size induced subcomplex of $\Delta G^c$ is non-trivial. 
+
+\subsection{The lcm-lattice}
+
+The lcm-lattice, introduced in \cite{welker1999lcm}, is a convenient way to compute the betti numbers and analyze the minimal free resolution of edge ideals. 
+
+\begin{defi}[\cite{welker1999lcm}, Page 2]
+    Let $S=k[x_0,\cdots,x_n]$ be the polynomial ring over a field $k$ and $I=(m_1,\cdots, m_d)$ a monomial ideal with its minimal generators. Its \textbf{lcm-lattice} $L_I$ is the lattice with elements labeled by the least common multiples of $m_1,... ,m_d$ ordered by divisibility, including $1$, which is regarded as the lcm of the empty set.
+\end{defi}
+
+If follows immediately that the atoms of $L_I$ are precisely $\{m_1,\cdots,m_d\}$.\\
+
+The relabeling construction from \cite{welker1999lcm} captures the adding variables construction discussed in the previous section.
+
+\begin{construction}
+    
+\end{construction}
+\vspace{-10pt}
+
+Let $I$ and $J$ be monomial ideals in $S=k[x_0,\cdots,x_n]$, and $f:L_I\to L_J$ a map which is a bijection on atoms and preserves joins. Let $\mathbf{P}$ be a bounded chain complex of free modules with homogeneous differentials $\partial^\mathbf{P}$ such that every generator of every free module $\mathbf{P}_n$ has multidegree in $L_I$. The chain complex $f(\mathbf{P})$ is constructed as follows:
+
+Let $\mathbf{P}_n=\bigoplus_{i=1}^{d} S[-\mathbf{a}_i]^{k_i}$, then $f(\mathbf{P})_n=\bigoplus_{i=1}^{d} S[-f(\mathbf{a}_i)]^{k_i}$, where we also consider $f$ as a map $\mathbb{N}^{n+1}\to \mathbb{N}^{n+1}$ between multidegrees.
+
+The differential $\partial^\mathbf{P}_n$ is homogeneous, and thus is a matrix of monomials. Suppose that its $(i,j)$-th entry $c \mathbf{x}^\mathbf{t}$ is nonzero, with $c\in k$. Suppose the $i$-th summand of $\mathbf{P}_{n-1}$ has generator in degree $\mathbf{a}$, and the $j$-th summand of $\mathbf{P}_n$ has generator in degree $\mathbf{b}$, then homogeneity implies $\mathbf{t} = \mathbf{b} - \mathbf{a}$. The differential $\partial^{f(\mathbf{P})}_n$ is the matrix having $(i,j)$-th entry $c \mathbf{x}^{f(\mathbf{b}) - f(\mathbf{a})}$. This makes it the unique homogeneous differential of $f(\mathbf{P})$ having the same $k$-coefficients in every entry as $\partial^\mathbf{P}_n$.\\
+
+The following theorem from \cite{welker1999lcm} states that ideals with isomorphic lcm-lattice have similar minimal free resolutions.
+
+\begin{theorem}[\cite{welker1999lcm}, Theorem 3.3]\thlabel{relabel}
+    Let $I$ and $J$ be monomial ideals. Suppose that $f:L_I\to L_J$ is a bijection of the underlying sets and preserves joins. Let $\mathbf{F}$ be the minimal free resolution of $S/I$, then $f(\mathbf{F})$ is the minimal free resolution of $S/J$.
+\end{theorem}
+
+
+
+
+\section{Adding Variables and Adding Degrees}
+
+The edge ideal of a graph is obtained by assigning a unique variable to each vertex. A natural generalization is assigning a monomial to each vertex such that no two vertices share a variable. We call this the \textbf{generalized edge ideal}. We can also think of it as starting from the ordinary edge ideal and adding extra variables to each vertex. 
+\vspace{20pt}
+\begin{center}
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Straight Lines [id:da2642354407167067] 
+\draw    (219.98,49.93) -- (339.98,119.91) ;
+%Straight Lines [id:da5574478775037375] 
+\draw    (220,189.93) -- (339.98,119.91) ;
+%Shape: Circle [id:dp40011272715539214] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (98.89,119.72) .. controls (98.89,119.11) and (99.39,118.61) .. (100,118.61) .. controls (100.61,118.61) and (101.11,119.11) .. (101.11,119.72) .. controls (101.11,120.34) and (100.61,120.84) .. (100,120.84) .. controls (99.39,120.84) and (98.89,120.34) .. (98.89,119.72) -- cycle ;
+%Shape: Circle [id:dp9112964386756579] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (219.13,49.93) .. controls (219.13,49.32) and (219.63,48.82) .. (220.24,48.82) .. controls (220.86,48.82) and (221.36,49.32) .. (221.36,49.93) .. controls (221.36,50.55) and (220.86,51.04) .. (220.24,51.04) .. controls (219.63,51.04) and (219.13,50.55) .. (219.13,49.93) -- cycle ;
+%Shape: Circle [id:dp5602400477321869] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (218.89,189.93) .. controls (218.89,189.32) and (219.39,188.82) .. (220,188.82) .. controls (220.61,188.82) and (221.11,189.32) .. (221.11,189.93) .. controls (221.11,190.55) and (220.61,191.04) .. (220,191.04) .. controls (219.39,191.04) and (218.89,190.55) .. (218.89,189.93) -- cycle ;
+%Shape: Circle [id:dp9307043706140095] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (338.87,119.91) .. controls (338.87,119.3) and (339.36,118.8) .. (339.98,118.8) .. controls (340.59,118.8) and (341.09,119.3) .. (341.09,119.91) .. controls (341.09,120.52) and (340.59,121.02) .. (339.98,121.02) .. controls (339.36,121.02) and (338.87,120.52) .. (338.87,119.91) -- cycle ;
+%Straight Lines [id:da4563869256929649] 
+\draw    (100,119.72) -- (220,189.93) ;
+%Straight Lines [id:da5033762304991266] 
+\draw    (100,119.72) -- (219.98,49.93) ;
+%Straight Lines [id:da7243909252584854] 
+\draw    (219.98,49.93) -- (220,191.04) ;
+
+% Text Node
+\draw (77.33,114.2) node [anchor=north west][inner sep=0.75pt]    {$x_{0}$};
+% Text Node
+\draw (212.33,33.2) node [anchor=north west][inner sep=0.75pt]    {$x_{1}$};
+% Text Node
+\draw (212.75,196.37) node [anchor=north west][inner sep=0.75pt]    {$x_{2}$};
+% Text Node
+\draw (348.33,115.53) node [anchor=north west][inner sep=0.75pt]    {$x_{3}$};
+
+
+\end{tikzpicture}
+\begin{equation*}
+    I=(x_0x_1\,,\,x_0x_2\,,\,x_1x_2\,,\,x_1x_3\,,\,x_2x_3)
+\end{equation*}
+\end{center}
+\vspace{20pt}
+\begin{center}
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Straight Lines [id:da2642354407167067] 
+\draw    (219.98,49.93) -- (339.98,119.91) ;
+%Straight Lines [id:da5574478775037375] 
+\draw    (220,189.93) -- (339.98,119.91) ;
+%Shape: Circle [id:dp40011272715539214] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (98.89,119.72) .. controls (98.89,119.11) and (99.39,118.61) .. (100,118.61) .. controls (100.61,118.61) and (101.11,119.11) .. (101.11,119.72) .. controls (101.11,120.34) and (100.61,120.84) .. (100,120.84) .. controls (99.39,120.84) and (98.89,120.34) .. (98.89,119.72) -- cycle ;
+%Shape: Circle [id:dp9112964386756579] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (219.13,49.93) .. controls (219.13,49.32) and (219.63,48.82) .. (220.24,48.82) .. controls (220.86,48.82) and (221.36,49.32) .. (221.36,49.93) .. controls (221.36,50.55) and (220.86,51.04) .. (220.24,51.04) .. controls (219.63,51.04) and (219.13,50.55) .. (219.13,49.93) -- cycle ;
+%Shape: Circle [id:dp5602400477321869] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (218.89,189.93) .. controls (218.89,189.32) and (219.39,188.82) .. (220,188.82) .. controls (220.61,188.82) and (221.11,189.32) .. (221.11,189.93) .. controls (221.11,190.55) and (220.61,191.04) .. (220,191.04) .. controls (219.39,191.04) and (218.89,190.55) .. (218.89,189.93) -- cycle ;
+%Shape: Circle [id:dp9307043706140095] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (338.87,119.91) .. controls (338.87,119.3) and (339.36,118.8) .. (339.98,118.8) .. controls (340.59,118.8) and (341.09,119.3) .. (341.09,119.91) .. controls (341.09,120.52) and (340.59,121.02) .. (339.98,121.02) .. controls (339.36,121.02) and (338.87,120.52) .. (338.87,119.91) -- cycle ;
+%Straight Lines [id:da4563869256929649] 
+\draw    (100,119.72) -- (220,189.93) ;
+%Straight Lines [id:da5033762304991266] 
+\draw    (100,119.72) -- (219.98,49.93) ;
+%Straight Lines [id:da7243909252584854] 
+\draw    (219.98,49.93) -- (220,191.04) ;
+
+% Text Node
+\draw (34.33,114.2) node [anchor=north west][inner sep=0.75pt]    {$m_0 = z_{0} z_{1}$};
+% Text Node
+\draw (194.33,33.2) node [anchor=north west][inner sep=0.75pt]    {$m_1 = z_{2}$};
+% Text Node
+\draw (191.75,196.37) node [anchor=north west][inner sep=0.75pt]    {$m_2 = z_{3} z_{4}^2$};
+% Text Node
+\draw (345.33,110.53) node [anchor=north west][inner sep=0.75pt]    {$m_3 = z_{5}^3$};
+
+
+\end{tikzpicture}
+\begin{equation*}
+    J=(z_0z_1z_2\,,\,z_0z_1z_3z_4^2\,,\,z_2z_3z_4^2\,,\,z_2z_5^3\,,\,z_3z_4^2z_5^3)
+\end{equation*}
+\end{center}
+
+We would like to analyze the resolution and some other related properties of the generalized edge ideal. 
+
+Let $G$ be a graph with $n+1$ vertices and $S=k[x_0,\cdots,x_n]$. Let $I_G$ be its ordinary edge ideal and $J_G$ be its generalized edge ideal with monomials $m_0,\cdots,m_n\in k[z_0,\cdots,z_t]$. As the $m_i$ consist of disjoint sets of variables, the lcm-lattices $L_I$ and $L_J$ are isomorphic via the bijection $f(x_i)=m_i$. Therefore, by \thref{relabel}, the corresponding free modules in the free resolution of $S/I_G$ and the free resolution of $S/J_G$ have the same number of generators, and the generator of degree $\mathbf{a}$ in the former corresponds to the generator of degree $f(\mathbf{a})$ in the latter. In other words, we have
+
+\begin{proposition}\thlabel{fres}
+    With the previous notation, the $\mathbb{Z}^{n+1}$-graded Betti numbers satisfy
+    \begin{equation*}
+        \beta_{i,\mathbf{a}}(S/I_G) = \beta_{i,f(\mathbf{a})}(S/J_G).
+    \end{equation*}
+\end{proposition}
+
+Let $d_i=\deg m_i$ and $\mathbf{d}=(d_0,\cdots,d_n)$, then $|f(\mathbf{a})|=\mathbf{a}\cdot \mathbf{d}$. Now suppose that, when we are dealing with $S/I_G$, instead of the ordinary $\mathbb{Z}$-grading of $S$ where each variable $x_i$ had degree $1$, we worked with a $\mathbb{Z}$-grading of $S$ where $x_i$ had degree $d_i$. It follows that the degree of $\mathbf{x}^\mathbf{a}$ would be $\mathbf{a}\cdot \mathbf{d}=|f(\mathbf{a})|$ instead of $|\mathbf{a}|$. That is, the degree of every generator of every free module in the resolution of $S/I_G$, under the grading $\deg x_i=d_i$, is the same as the degree of every generator of every free module in the resolution of $S/J_G$, under the grading $\deg x_i=1$. This means that the regularity and $\mathbb{Z}$-graded Betti numbers of the generalized edge ideal is equivalent to the regularity and $\mathbb{Z}$-graded Betti numbers of the ordinary edge ideal, under another $\mathbb{Z}$-grading. Therefore, in the rest of this paper, we will only focus on the ordinary edge ideal under other $\mathbb{Z}$-gradings.
+
+Now suppose we start with a graph $G$ with $V(G)=\{x_0,\cdots,x_n\}$, then $S=k[x_0,\cdots,x_n]$. If we add $t_i$ extra variables to the vertex $x_i$, then $x_i$ would have $1+t_i$ variables. In light of the discussion in the previous paragraph, this is equivalent to the having a grading on $S$ with $\deg x_i=1+t_i$. We call this ``adding $t_i$ degrees to the vertex $x_i$.'' Let $N=t_0+\cdots t_n$, then we also say we ``added $N$ degrees to the graph.'' Now by Hochster's formula (\thref{hochster}), all non-zero Betti numbers of $S/I_G$ lie in square-free multi-degrees. For a square-free multi-degree $\mathbf{a}$, we obviously have $|\mathbf{a}|\leqslant|f(\mathbf{a})| \leqslant |\mathbf{a}| + N$. That is, after adding $N$ degrees to the graph, the $\mathbb{Z}$-degree of every generator in the minimal free resolution of $S/I_G$ increases by at most $N$. By the definition of regularity we have
+
+\begin{proposition}\thlabel{plusn}
+    Let $I_G$ be the ordinary edge ideal of a graph $G$ and $J_G$ be its edge ideal after adding $N$ degrees. Then
+    \begin{equation*}
+        \mathrm{reg}(I_G) \leqslant \mathrm{reg} (J_G) \leqslant \mathrm{reg} (I_G)+N.
+    \end{equation*}
+\end{proposition}
+
+\section{The Regularity Offset}
+
+With \thref{plusn}, we have the upper and lower bounds of the regularity. When we were doing examples, we found the regularity tends to get closer to the upper bound rather than the lower bound. It is very intuitive, cause when we adding degrees, the regularity normally tends to grow. So, the regularity keeping the same after adding degrees is actually an abnormal phenomenon.
+
+\begin{defi}[Regularity offset]
+   Given a graph $G$, for a certain grading $\mathbf{g}\in\mathbb{N}^n$, where $\sum_{i=1}^{n} (\deg x_i\\-1)=N$, let $I_G$ be the ordinary edge ideal and $J_G$ be the edge ideal with grading $\mathbf{g}$, we define the regularity offset of $G$ under grading $\mathbf{g}$ as $ro(G,\mathbf{g})=reg(I_G)+N-reg(J_G)$. And we say that a graph $G$ has regularity offset if there exists a grading such that the regularity offset under that grading is non-zero.
+   
+\end{defi}
+
+By the definitions of resolution and regularity and the conclusion before, the regularity offset of a certain edge ideal will exist, if and only if a vertex or some vertices doesn't occur in any subgraph that contributes to the regularity or don't occur in them simultaneously. 
+
+\begin{lemma}\thlabel{rogt0}
+    A graph $G$ doesn't have regularity offset if and only if $ro(G,\mathbf{t})=0$ where $\mathbf{t}$ is a grading that is all $2$.
+\end{lemma}
+
+\begin{proof}
+    If a graph doesn't have regularity offset, then by definition, $ro(G,\mathbf{t})=0$.
+
+    Now, for the other direction, we can think $reg(J_G)$ under grading $\mathbf{t}$ as adding one degree to a vertex and doing this process to each vertex. And, by \thref{plusn}, if we add one degree, then the regularity will go up at most by $1$. Since then, the statement $ro(G,\mathbf{t})=0$ becomes, for any permutation of vertices, if we add one degree to each vertex under that permutation, the regularity will always go up by $1$ each time. Hence, it is not possible that a vertex or some vertices doesn't occur in any subgraph that contribute to the regularity or don't occur in them simultaneously, because if then, when we add degree to just that vertex or those vertices (which is possible, as we add degree under any permutation), the regularity offset will occur, and then $ro(G,\mathbf{t})\neq0$. So that, the graph $G$ doesn't have regularity offset. 
+\end{proof}
+
+With this lemma, we can have a topological conclusion for the existence of the regularity offset.
+
+\begin{theorem}\thlabel{wholegraph}
+    A graph $G$ doesn't have regularity offset if and only if the whole graph contributes to the regularity, which means $\widetilde{H}_{reg(G)-2}\left(\Delta G^c, k\right)$ is non-trivial .
+\end{theorem}
+
+\begin{proof}
+    In \thref{rogt0}, we have already shown the equivalence between the nonexistence of regularity offset and $ro(G,\mathbf{t})=0$. So, to prove this theorem, we just need to show that $ro(G,\mathbf{t})=0$ if and only if the whole graph contributes to the regularity.
+
+    One direction is immediate. If the whole graph contributes to the regularity, then the monomial corresponding to the whole graph will occur in the resolution on a right position. Hence, all the added degrees will be collected in this monomial, which means the graph $G$ can not have any regularity offset, then, for sure, $ro(G,\mathbf{t})=0$.
+
+    For the other direction, we are going to prove its contrapositive. Suppose the whole graph doesn't contribute to the regularity, we denote the largest subgraphs that contribute to the regularity as $\{S_i\}$, and $|V(S_i)|=m<n=|V(G)|$ for all $i$. Under grading $\mathbf{t}$, the degree of monomials that contribute to the regularity will double. So the regularity goes up by $m$, because this is the largest degree of those monomials. Since the number of added degrees in grading $\mathbf{t}$ is $n$, then $ro(G,\mathbf{t})=n-m>0$. In consequence, we prove that if $ro(G,\mathbf{t})=0$, then the whole graph contributes to the regularity.
+
+    
+\end{proof}
+
+After understanding the existence of regularity offset, we are naturally interested in where the regularity offset comes from, or in other words, which are the tricky vertices? 
+
+\begin{defi}
+    Given a graph $G$, offset vertices are the vertices that either don't occur in any subgraph that contribute to the regularity or don't occur in those subgraphs simultaneously with some other offset vertices. We use $V_o(G)$ to denote all the offset vertices in the graph $G$.
+\end{defi}
+
+In the following paper, we are going to discuss the regularity offset numerically and find the offset vertices for some types of graphs.
+
+\subsection{Co-Chordal graphs}
+Chordal graphs are graphs such that they have no induced cycles with length more than $3$. We call a graph is co-chordal if its complement graph is chordal. In the study of edge ideals, if the graph is co-chordal then it will have a relatively simple resolution.
+\begin{theorem}[\cite{RalfFröberg1990}, Fröberg’s Theorem]
+    The edge ideal of a graph $G$ has a linear resolution if and only if the complement graph of $G$ is chordal.
+\end{theorem}
+By this theorem, we can have a useful corollary immediately.
+\begin{cor}
+    If $G^c$ is chordal, then $reg(I_G)=2$.
+\end{cor}
+
+\begin{proposition}
+    If $G^c$ is chordal, then $G$ doesn't have regularity offset if and only if $G^c$ is not connected.
+\end{proposition}
+
+\begin{proof}
+    Since $reg(I_G)=2$, then by \thref{wholegraph}, $G$ doesn't have regularity offset if and only if $\widetilde{H}_{0}\left(\Delta G^c, k\right)$ is non-trivial. By homology theory, $dim_k(\widetilde{H}_{0}\left(\Delta G^c, k\right))=\#$ connected components $-1$. Hence, $G$ doesn't have regularity offset if and only if $G^c$ is not connected.
+\end{proof}
+
+\begin{cor}
+    Complete graph doesn't have regularity offset.
+\end{cor}
+\begin{proof}
+    Complete graph's complement is just a bunch of isolated vertices. Then, it is co-chordal and doesn't have regularity offset. 
+\end{proof}
+
+For now, we have a brief introduction on how the regularity will behave if it has some special properties besides co-chordality. Next, we are going to introduce a general theorem for all the co-chordal graphs.
+
+\begin{theorem}
+Given a co-chordal graph $G$, for a grading $\mathbf{g}$, we use $t_i=\deg x_i-1$ to denote the number of added degrees on each vertex. Then we have
+\begin{equation*}
+    ro(G,\mathbf{g})=\min_{j}\{\sum_{i=1}^{k_j}t_{(j_i)}\}\quad \text{where $\{x_{j_1},x_{j_2},\cdots,x_{j_{k_j}}\}$ forms a minimal cut set.}
+\end{equation*}
+\end{theorem}
+\begin{proof}
+    By multigraded Hochster's formula (\thref{hochster}), a certain monomial would occur in the resolution if and only if the corresponding homology group is non-trivial. For the co-chordal case, we just need to analyze $\widetilde{H}_{0}$. If we translate this to graph theory language, we just need to find the disconnected induced subgraph or, in another direction, find the cut sets.
+
+    Since co-chordal graph has a linear resolution, every disconnected induced subgraph would contribute to the regularity. Therefore, all the degrees in the cut sets can not be collected in that monomial corresponding to this subgraph. So that
+    \begin{equation*}
+      ro(G,\mathbf{g})=\min_{j}\{\sum_{i=1}^{k_j}t_{(j_i)}\}\quad \text{where $\{x_{j_1},x_{j_2},\cdots,x_{j_{k_j}}\}$ forms a cut set.}  
+    \end{equation*}
+    As all the variables' degree are strictly positive, we can simplify this formula a little bit.
+    \begin{equation*}
+        ro(G,\mathbf{g})=\min_{j}\{\sum_{i=1}^{k_j}t_{(j_i)}\}\quad \text{where $\{x_{j_1},x_{j_2},\cdots,x_{j_{k_j}}\}$ forms a minimal cut set.}
+    \end{equation*}
+\end{proof}
+\begin{cor}
+    For a co-chordal graph $G$, $V_o(G)$ is the union of all the minimal cut sets.
+\end{cor}
+
+
+\subsection{Paths and cycles}
+Paths and cycles are two other families of graphs that have relatively simple structure. We will discuss the behavior of regularity offset of them in this chapter. 
+
+First of all, we need to understand the regularity of edge ideal of paths and cycles.
+
+\begin{proposition}[\cite{woodroofe2014matchings}, Proposition 10]
+
+$reg(I_{C_n})=reg(I_{P_n})=\left \lfloor(n+1)/3 \right \rfloor+1$.
+
+\end{proposition}
+To start with a relatively easy one, we would like to discuss cycles first. By \thref{wholegraph}, to understand cycles' regularity offset, we just need to figure out the homotopy type of $\Delta C_n^c$. Thanks to Prof. Kozlov, in the Proposition 5.2 of \cite{kozlov1999complexes}, he has shown that
+\begin{equation*}
+    \Delta C_n^c\simeq\left\{\begin{matrix}
+ S^{k-1}\vee S^{k-1},\qquad &\text{if}\quad  n=3k;\\
+ S^{k-1},\qquad &\text{if}\quad  n=3k+1;\\
+ S^k,\qquad &\text{if}\quad  n=3k+2.
+\end{matrix}\right.
+\end{equation*}
+We can check that these homotopy types fit in the regularity exactly. Hence, we can give the conclusion for cycles.
+
+\begin{proposition}
+    All the cycles don't have the regularity offset.
+\end{proposition}
+Now, let's move on to the paths. Similarly, we need to introduce a topological conclusion at the beginning.
+
+\begin{proposition}[\cite{kozlov1999complexes}, Proposition 4.6]\thlabel{P}
+\begin{equation*}
+    \Delta P_n^c\simeq \left\{\begin{matrix}
+ S^{k-1},\qquad &\text{if}\quad  n=3k;\\
+ \text{a point,}\qquad &\text{if}\quad  n=3k+1;\\
+ S^k,\qquad &\text{if}\quad  n=3k+2.
+\end{matrix}\right.
+\end{equation*}
+\end{proposition}
+ Therefore, we have the following corollary immediately.
+ \begin{cor}
+     $P_n$ doesn't have regularity offset if and only if $n\equiv0,2$ $(mod$ $3)$.
+ \end{cor}
+For the case that $n\equiv1$ $(mod$ $3)$, we have the following theorem.
+\begin{theorem}
+    For $P_n$, where $n\equiv1$ $(mod$ $3)$, we label the vertices from one end to the other as $x_1,x_2,\cdots,x_n$. Then, for a grading $\mathbf{g}$, we have $V_o(P_n)=\{x_1,x_4,\cdots,x_{n-3},x_n\}$ and $ro(P_n,\mathbf{g})=\min\{t_1,t_4,\cdots,t_{n-3},t_n\}$, where $t_i=\deg x_i-1$.
+\end{theorem}
+\begin{proof}
+    Let $n=3k+1$. By \thref{P}, we can see that the whole $P_n$ can not contribute to the regularity. We then think about the subgraph with $n-1$ vertices.
+
+    For the subgraph $P_n[V(P_n)\setminus\{x_1\}]$ and $P_n[V(P_n)\setminus\{x_n\}]$, they are paths with $n-1$ vertices, then with \thref{P}, we can see that their Stanley-Reisner complexes are both homotopy equivalent to $S^{k-1}$. And this is exactly what we need for the regularity. Therefore, these two subgraphs contribute to the regularity.
+
+    For the subgraph $P_n[V(P_n)\setminus\{x_{3s+1}\}]$, where $0< s< k$, all these subgraphs are the unions of two connected components, and one component is $P_{3s}$, the other is $P_{3(k-s)}$. By Corollary 20.6 in \cite{kozlov2008combinatorial}, the Stanley-Reisner complex of these subgraphs is $\Delta P_{3s}^c\ast\Delta P_{3(k-s)}^c$. Then, by \thref{P}, $\Delta P_{3s}^c\ast\Delta P_{3(k-s)}^c\simeq S^{s-1}\ast S^{k-s-1}\simeq S^{(s-1)+(k-s-1)+1}=S^{k-1}$. So, as before, these subgraphs contribute to the regularity.
+
+    For all the other subgraphs, they are the disjoint union of $P_{3p+1}$ and $P_{3q+2}$, where $p+q=k-1$. So, the Stanley-Reisner complex is $\Delta P_{3p+1}^c\ast\Delta P_{3q+2}^c\simeq \{\bullet \}\ast S^{k}$. As this is a cone, so it is homotopy equivalent to a point. Hence, they don't contribute to the regularity.
+
+    We now can conclude that only $P_n[V(P_n)\setminus\{x_{3t+1}\}]$, where $0\leq t\leq k$, are the only $(n-1)$-vertex subgraphs that contribute to the regularity. So that, $\{x_1,x_4,\cdots,x_{n-3},x_n\}\subset V_o(P_n)$ (to make it simple, we now call them the $1\equiv$ $(mod$ $3)$ vertices). 
+    
+    To show the other direction, we need to show that any subgraph that includes all the $1\equiv$ $(mod$ $3)$ vertices in the vertex set cannot contribute to the regularity. In the previous reasoning, the bad part that let us not delete vertex other than $1\equiv$ $(mod$ $3)$ vertices is it will produce a $P_{3p+1}$, which is homotopy equivalent to a point. To kill that "point", we need to delete a vertex in $P_{3p+1}$. If we still don't delete the $1\equiv$ $(mod$ $3)$ vertices, it actually drags us back to the original problem, producing a "point". Therefore, we can show that if we never delete the $1\equiv$ $(mod$ $3)$ vertices, its Stanley-Reisner complex will always homotopy equivalent to a point. Hence, there cannot be a subgraph that includes all the $1\equiv$ $(mod$ $3)$ vertices and still contributes to the regularity. So, $V_o(P_n)=\{x_1,x_4,\cdots,x_{n-3},x_n\}$.
+
+    As we have shown before, all the added degrees on $1\equiv$ $(mod$ $3)$ vertices cannot be collected in the subgraphs that contribute to the regularity simultaneously. So, for a grading $\mathbf{g}$, $ro(P_n,\mathbf{g})=\min\{t_1,t_4,\cdots,t_{n-3},t_n\}$, where $t_i=\deg x_i-1$.
+\end{proof}
+    
+
+
+
+\section{General View}
+Now, we understand what the regularity offset would be like for some special types of graphs. We may be able to say that we understand the regularity offset to some sense. Hence, we can go back to deal with some general questions before.
+
+\subsection{Revisit \thref{plusn}}
+As we mentioned at the beginning of Section 3, the $\mathrm{reg} (J_G)$ intuitively tends to be closer to $\mathrm{reg} (I_G)+N$. One may think that the inequality we introduce in \thref{plusn} is not good enough, as it seems to be possible to have a nicer lower bound. However, in this chapter, we are going to show that it is actually a sharp lower bound for any given $N$.
+\begin{proposition}
+    Given an integer $N\geq0$, there is always a graph $G$ such that $reg(J_G)=reg(I_G)$ after adding $N$ degrees.
+\end{proposition}
+\begin{proof}
+To prove this, we are going to introduce a family of graphs and show that the regularity of this graph remains the same after adding a certain number of degrees.  
+  \begin{figure}[h]
+      \centering
+      \includegraphics[width=0.8\linewidth]{diagram-20250828.png}
+  \end{figure}  
+
+The graph above is that special family of graphs, where $V(G)=\{x_1,x_2,x_3,\cdots,x_{n-3},x_{n-2},y,z\}$ and $\Delta G^c[\{x_1,x_2,x_3,\cdots,x_{n-3},x_{n-2}\}]\simeq S^N$. We let $y$ be adjacent to all the other vertices and $z$ only be adjacent to $y$.
+
+We claim that the $\mathrm{reg}(I_G)=N+2$. Since  $\Delta G^c[\{x_1,x_2,x_3,\cdots,x_{n-3},x_{n-2}\}]\simeq S^N$, by Hochster's formula, $\mathrm{reg}(I_G)\geq N+2$. To show the other direction, we need to analyze the Stanley-Reisner complex of $I_G$. Let $M>N$. As $y$ is adjacent to all the other vertices, it is an isolated vertex in the Stanley-Reisner complex.  Hence, if there is a subcomplex of $\Delta G^c$ whose $M$-dimensional homology is non-trivial, it doesn't need to include $y$, because $y$ can help nothing here. Since $z$ is not adjacent to any $x_i$ in $G$, then the subcomplex on any subset of $\{x_1,x_2,x_3,\cdots,x_{n-3},x_{n-2}\}$ together with $z$ would be a cone, hence contractible. So, if there is a subcomplex of $\Delta G^c$ whose $M$-dimensional homology is non-trivial, it has to be a subcomplex of $\Delta G^c[\{x_1,x_2,x_3,\cdots,x_{n-3},x_{n-2}\}]$. However, this cannot be possible. Consequently, $\mathrm{reg}(I_G)=N+2$.
+
+By the reasoning before, we can also see that, for any subcomplex, if $z$ is in this subcomplex, then this subcomplex would always be contractible unless this subcomplex also involves $y$. Moreover, even we have both $y$ and $z$ simultaneously, we can only get a subcomplex whose $0$-dimensional homology is non-trivial. So, to some sense, the vertex $z$ is the least possible vertex that can contribute to the regularity. If we add $N$ degrees only to vertex $z$, since adding degree is equivalent to adding dimension in homology in this case, we will shift the homology dimension by adding $N$, therefore, any subcomplex involving $y$ and $z$ would be same as $\Delta G^c[\{x_1,x_2,x_3,\cdots,x_{n-3},x_{n-2}\}]$ homologically. So, no subcomplex breaks the homology red line $N$, then the regularity will remain the same.
+\end{proof}
+
+%\subsection{A general formula}
+%In section 3, we introduced several different types of graphs and the regualrity offset of them. We gave each type of graphs a formula describing the regularity offset which is always in the form of taking the minimum among plenty of things. So, a natural question would be can we establish such kind of formula for all the graphs?
+
+
+
+
+
+
+
+\newpage
+\bibliographystyle{plain}
+\bibliography{reference}
+\end{document}
