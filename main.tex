@@ -43,16 +43,16 @@ One can observe that the edge ideal $I_G$ is the Stanley-Reisner ideal of $\Delt
 \begin{theorem}\thlabel{hochster}[Hochster's formula]
     Let $I_G$ be the edge ideal of a graph $G$. Then for $i\geq 0$ and squarefree degree $\mathbf{b}$,
     \begin{equation*}
-        \beta_{i,\mathbf{b}}(I_G)=dim_k(\widetilde{H}_{|\mathbf{b}|-i-2}\left(\Delta G^c[supp(\mathbf{b})], k\right)).
+        \beta_{i,\mathbf{b}}(I_G)=dim_k(\widetilde{H}_{|\mathbf{b}|-i-2}\left(\Delta G^c[supp(\mathbf{b})], k\right)),
     \end{equation*}
-    If we forget the multigrading, then for $j\geq0$,
+    and $\beta_{i,\mathbf{b}}(I_G)=0$ if $\bf{b}$ is not squarefree. If we forget the multigrading, then for $j\geq0$,
     \begin{equation*}
         \beta_{i,i+j}(I_G)=\sum_{|W|=i+j}dim_k(\widetilde{H}_{j-2}\left(\Delta G^c[W], k\right)),
     \end{equation*}
     where $W$ runs over all the subsets of $V(G)$ of size $i+j$.
 \end{theorem}
 More detailed information on Hochster's formula can be found in \cite{stanley1996combinatorics} and \cite{francisco2014survey}. We now give the definition of Castelnuovo-Mumford regularity of an edge-ideal $I_G$.
-\begin{defi}[Castelnuovo-Mumford regularity]
+\begin{defi}[Castelnuovo-Mumford regularity]\thlabel{regdef}
     We use $reg(I_G)$ (or $reg(G)$ in short) to denote the Castelnuovo-Mumford regularity of $I_G$. 
     \begin{equation*}
     reg(I_G)=max\{j|\beta_{i,i+j}(I_G)\neq0\}.    
@@ -78,7 +78,7 @@ The relabeling construction from \cite{welker1999lcm} captures the adding variab
 \begin{construction}
     
 \end{construction}
-\vspace{-10pt}
+\vspace{-5pt}
 
 Let $I$ and $J$ be monomial ideals in $S=k[x_0,\cdots,x_n]$, and $f:L_I\to L_J$ a map which is a bijection on atoms and preserves joins. Let $\mathbf{P}$ be a bounded chain complex of free modules with homogeneous differentials $\partial^\mathbf{P}$ such that every generator of every free module $\mathbf{P}_n$ has multidegree in $L_I$. The chain complex $f(\mathbf{P})$ is constructed as follows:
 
@@ -99,7 +99,73 @@ Trees are a type of very simple graphs whose Betti numbers are relatively simple
 
 \subsection{Full trees and a leaf deletion theorem}
 
+By Hochster's formula (\thref{hochster}), the nonzero Betti numbers of a graph can appear only in squarefree multidegrees. The largest such multidegree is $\mathbf{1}=(1,\cdots,1)$, and we make the following definition.
+\begin{defi}\thlabel{fulldef}
+    A \textbf{full graph} is a graph $G$ such that for some $i$ we have $\beta_{i,\mathbf{1}}(I_G)\neq 0$. A \textbf{full subgraph} of a graph $G$ is an induced subgraph $H$ that is itself a full graph.
+\end{defi}
+We will see later (\thref{fullnameorigin}) that a tree is full if and only if all vertices contribute to its regularity, hence the name `full'.
 
+We now turn to a leaf deletion theorem, implicitly mentioned in \cite{bouchat}, that lies at the core of the computation of tree Betti numbers. We first present an auxiliary lemma (\cite{bouchat}, Theorem 2.1.1) and a detailed proof that fills in the omissions of the original proof in \cite{bouchat}.
+
+\begin{lemma}[Mapping cone lemma]\thlabel{mpclemma}
+    Let $G$ be a simple graph and $V(G) = \{x_1,\cdots,x_n\}$, with $x_n$ a leaf and $x_{n-1}$ its neighbor. Let $S=k[x_1,\cdots,x_n]$ and
+    \begin{align*}
+        J&=(x_ix_j\mid \{x_i,x_j\}\in E(G),\,x_ix_j\neq x_{n-1}x_n),\\
+        -\mathbf{2} &= (0,\cdots,0,-1,-1),
+    \end{align*}
+    then there is a short exact sequence
+    \begin{equation}
+        \begin{tikzcd}
+            0 \arrow[r] & S/(J:x_{n-1}x_n)[-\mathbf{2}] \arrow[rr, "{x_{n-1}x_n}"] & & S/J \arrow[r] & S/I_G \arrow[r] & 0.
+        \end{tikzcd}
+    \end{equation}
+    Moreover, let $\mathbf{E}, \mathbf{F}, \mathbf{G}$ be the minimal free resolutions of the three modules in (1), from left to right respectively, then the induced short exact sequence of chain complexes
+    \begin{equation*}
+        \begin{tikzcd}
+            0 \arrow[r] & \mathbf{E} \arrow[r, "\phi"] & \mathbf{F} \arrow[r] & \mathbf{G} \arrow[r] & 0
+        \end{tikzcd}
+    \end{equation*}
+    presents $\mathbf{G}$ as the mapping cone of $\phi$.
+\end{lemma}
+
+\begin{proof}
+    AAAAA...
+\end{proof}
+
+\begin{theorem}[Leaf deletion theorem]\thlabel{deletion}
+    Let $\mathbf{a}=(a_1,\cdots,a_n)$. Then
+    \begin{equation*}
+        \beta_{i,\mathbf{a}}(S/I_G) = \left\{
+            \begin{aligned}
+                &\beta_{i,\,\mathbf{a}[G_{\setminus n}]}(k[G_{\setminus n}]/I_{G_{\setminus n}}), &a_n=0,\\
+                &\beta_{i-\#N(x_{n-1}),\,\mathbf{a}[G_{(n)}]}(k[G_{(n)}]/I_{G_{(n)}}), &a_{n-1}=1,a_n=1,\\
+                &0, &a_{n-1}=0,a_n=1.
+            \end{aligned}
+        \right.
+    \end{equation*}
+    The graph $G_{\setminus n}$ is the induced subgraph of $G$ on $V(G)\setminus {x_n}$. The graph $G_{(n)}$ is the induced subgraph of $G$ on $\{\;x_i\mid \{x_i,x_{n-1}\}\notin E(G),\;i\neq n-1\;\}$. The rings $k[H] = k[\;x_i\mid x_i\in V(H)\;]$. The multidegree $\mathbf{a}[H] = (\;a_i\mid x_i\in V(H)\;)$. The set $N(x_{n-1})$ is the neighborhood of $x_{n-1}$ in $G$.
+\end{theorem}
+
+\begin{proof}
+    By \thref{mpclemma} we have $\mathbf{G}_i=\mathbf{F}_i\oplus \mathbf{E}_{i-1}$. Therefore
+    \begin{equation*}
+        \beta_{i,\mathbf{a}}(S/I_G) = \beta_{i,\mathbf{a}}(S/J) + \beta_{i-1,\mathbf{a}}(S/(J:x_{n-1}x_n)[-\mathbf{2}]).
+    \end{equation*}
+    Observe that $J$ is an ideal contained in the subring $k[G_{\setminus n}]\subset S$, therefore its minimal free resolution considered on $S$ has the same generator multidegrees as its minimal free resolution considered on $k[G_{\setminus n}]$. In particular, no generator of $\mathbf{F}_i$ has a multidegree $\mathbf{a}$ with $a_n\neq 0$. This means that
+    \begin{equation*}
+        \beta_{i,\mathbf{a}}(S/J) = \left\{
+            \begin{aligned}
+                &\beta_{i,\,\mathbf{a}[G_{\setminus n}]}(k[G_{\setminus n}]/I_{G_{\setminus n}}), &a_n=0,\\
+                &0, &a_n=1.
+            \end{aligned}
+        \right.
+    \end{equation*}
+    On the other hand, we have
+    \begin{equation*}
+        (J:x_{n-1}x_n) = (J:x_{n-1}) = I_{G_{(n)}} + (x_i\mid x_i\in N(x_{n-1}),\;i\neq n).
+    \end{equation*}
+    AAAAAA...
+\end{proof}
 
 \subsection{Betti numbers}
 
