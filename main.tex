@@ -97,7 +97,7 @@ The following theorem from \cite{welker1999lcm} states that ideals with isomorph
 
 Trees are a type of very simple graphs whose Betti numbers are relatively simple to compute. In this section, we present a new proof to a leaf deletion theorem in \cite{bouchat}, and use it to compute the Betti numbers of trees.
 
-\subsection{Full trees and a leaf deletion theorem}
+\subsection{Full graphs and a leaf deletion theorem}
 
 By Hochster's formula (\thref{hochster}), the nonzero Betti numbers of a graph can appear only in squarefree multidegrees. The largest such multidegree is $\mathbf{1}=(1,\cdots,1)$, and we make the following definition.
 \begin{defi}\thlabel{fulldef}
@@ -105,7 +105,7 @@ By Hochster's formula (\thref{hochster}), the nonzero Betti numbers of a graph c
 \end{defi}
 We will see later (\thref{fullnameorigin}) that a tree is full if and only if all vertices contribute to its regularity, hence the name `full'.
 
-We now turn to a leaf deletion theorem, implicitly mentioned in \cite{bouchat}, that lies at the core of the computation of tree Betti numbers. We first present an auxiliary lemma (\cite{bouchat}, Theorem 2.1.1) and a detailed proof that fills in the omissions of the original proof in \cite{bouchat}.
+We now turn to a leaf deletion theorem, implicitly mentioned in \cite{bouchat}, that lies at the core of the computation of tree Betti numbers. We first present an auxiliary lemma (\cite{bouchat}, Theorem 2.1.1) and a detailed proof different from the original proof in \cite{bouchat}.
 
 \begin{lemma}[Mapping cone lemma]\thlabel{mpclemma}
     Let $G$ be a simple graph and $V(G) = \{x_1,\cdots,x_n\}$, with $x_n$ a leaf and $x_{n-1}$ its neighbor. Let $S=k[x_1,\cdots,x_n]$ and
@@ -129,47 +129,151 @@ We now turn to a leaf deletion theorem, implicitly mentioned in \cite{bouchat}, 
 \end{lemma}
 
 \begin{proof}
-    AAAAA...
+    It is clear that (1) is an exact sequence. For the second statement, as minimal free resolutions are unique up to isomorphism, it suffices to prove that the mapping cone $\mathbf{H}=C(\phi)$ is a minimal free resolution of $S/I_G$. It is a complex of free modules by definition, and by the long exact sequence of homology it is a resolution of $S/I_G$. To prove it is minimal, we need to prove that there are no non-zero constants in the (matrices of the) differentials of $\mathbf{H}$. As $\mathbf{E}$ and $\mathbf{F}$ are both minimal, there are no nonzero constants in their differentials. By the structure of the differentials of the mapping cone, it suffices to show that there are no nonzero constants in every $\phi_i$.
+    
+    Consider the construction of the induced chain map $\phi$.
+    \begin{equation*}
+        \begin{tikzcd}
+            \cdots \arrow[r] & \mathbf{E}_{t+1} \arrow[r, "{d_{t+1}^\mathbf{E}}"] \arrow[d,"{\phi_{t+1}}"] & \mathbf{E}_t \arrow[r, "{d_{t}^\mathbf{E}}"]\arrow[d,"{\phi_{t}}"] & \mathbf{E}_{t-1}\arrow[r, "{d_{t-1}^\mathbf{E}}"]\arrow[d,"{\phi_{t-1}}"]  & \cdots \\
+            \cdots \arrow[r]  & \mathbf{F}_{t+1}\arrow[r, "{d_{t+1}^\mathbf{F}}"]  & \mathbf{F}_t \arrow[r, "{d_{t}^\mathbf{F}}"] & \mathbf{F}_{t-1}\arrow[r, "{d_{t-1}^\mathbf{F}}"]  & \cdots
+        \end{tikzcd}
+    \end{equation*}
+    We abuse notation a little and set $\mathbf{E}_{-1}=S/(J:x_{n-1}x_n)$ and $\mathbf{F}_{-1}=S/J$ and $\phi_{-1}=x_{n-1}x_n$. The inductive construction of $\phi$ is as follows. Having constructed $\phi_t$, we have $d_t^\mathbf{F}\,\phi_t\,d_{t+1}^\mathbf{E}=\phi_{t-1}\,d_{t}^\mathbf{E}\,d_{t+1}^\mathbf{E}=0$, so $\mathrm{im}(\phi_t\,d_{t+1}^\mathbf{E})\subset \ker d_t^\mathbf{F}=\mathrm{im}\:d_{t+1}^\mathbf{F}$. For every generator $e_i$ of $\mathbf{E}_{t+1}$, pick a $f_i\in \mathbf{F}_{t+1}$ such that $d_{t+1}(f_i)=\phi_t(d_{t+1}(e_i))$, and this selection defines the map $\phi_{t+1}$.
+    
+    We now prove by induction that the image of every $\phi_t$ lies in $x_{n-1}x_n\mathbf{F}_t$, which proves the lemma. The base case $\phi_{-1}$ already holds. Suppose that this is true for $\phi_t$, then for every generator $e_i$ of $\mathbf{F}_{t+1}$ we have $\phi_t(d_{t+1}(e_i))=x_{n-1}x_n\epsilon_i$ for some $\epsilon_i\in \mathbf{F}_t$. Now $x_{n-1}x_n\epsilon_i\in \ker d_{t}^\mathbf{F}$ implies that $\epsilon_i\in \ker d_{t}^\mathbf{F}=\mathrm{im}\: d_{t+1}^\mathbf{F}$. Therefore there exists $f_i\in \mathbf{F}_{t+1}$ such that $d_{t+1}(f_i)=\epsilon_i$. The map $\phi_{t+1}$ can be taken to send $e_i$ to $x_{n-1}x_nf_i$.
 \end{proof}
 
+By Hochster's formula, the non-zero Betti numbers of graphs only appear in squarefree multidegrees. Squarefree multidegrees are in one-to-one correspondence with subsets of the vertex set, so we introduce the following notation. For a graph $G$ with $V(G)=\{x_1,\cdots,x_n\}$ and a subset $H\subset V(G)$, write $\beta_i(G,H)$ for the betti number $\beta_{i,\mathbf{a}}(k[V(G)]/I_G)$, where $a_i=1$ when $x_i\in H$ and $a_i=0$ when $x_i\notin H$. We abbreviate $\beta_i(G,V(G))$ as $\beta_i(G)$, so full graphs are graphs with $\beta_i(G)=1$ for some $i$.
+
 \begin{theorem}[Leaf deletion theorem]\thlabel{deletion}
-    Let $\mathbf{a}=(a_1,\cdots,a_n)$. Then
+    Let $G$ be a graph with $V(G)=\{x_1,\cdots,x_n\}$ and $H\subset V(G)$. Suppose $x_n$ is a leaf of $G$ and $x_{n-1}$ its neighbor. Then
     \begin{equation*}
-        \beta_{i,\mathbf{a}}(S/I_G) = \left\{
+        \beta_i(G,H) = \left\{
             \begin{aligned}
-                &\beta_{i,\,\mathbf{a}[G_{\setminus n}]}(k[G_{\setminus n}]/I_{G_{\setminus n}}), &a_n=0,\\
-                &\beta_{i-\#N(x_{n-1}),\,\mathbf{a}[G_{(n)}]}(k[G_{(n)}]/I_{G_{(n)}}), &a_{n-1}=1,a_n=1,\\
-                &0, &a_{n-1}=0,a_n=1.
+                &\beta_i(G\setminus x_n,H), &x_n\notin H,\\
+                &\beta_{i-\#(N(x_{n-1})\cap H)}(G_{(n)},H\cap G_{(n)}), &x_{n-1}\in H,x_n\in H,\\
+                &0, &x_{n-1}\notin H,x_n\in H.
             \end{aligned}
         \right.
     \end{equation*}
-    The graph $G_{\setminus n}$ is the induced subgraph of $G$ on $V(G)\setminus {x_n}$. The graph $G_{(n)}$ is the induced subgraph of $G$ on $\{\;x_i\mid \{x_i,x_{n-1}\}\notin E(G),\;i\neq n-1\;\}$. The rings $k[H] = k[\;x_i\mid x_i\in V(H)\;]$. The multidegree $\mathbf{a}[H] = (\;a_i\mid x_i\in V(H)\;)$. The set $N(x_{n-1})$ is the neighborhood of $x_{n-1}$ in $G$.
+    The set $N(x_{n-1})$ is the open neighborhood of $x_{n-1}$ in $G$.\\
+    The graph $G_{(n)}$ is the induced subgraph of $G$ on $\{\,x_i\mid \{x_i,x_{n-1}\}\notin E(G),\;i\neq n-1\,\}$. That is, it is the induced subgraph on all vertices not adjacent to $x_{n-1}$ and not equal to it.\\
+    To deal with the case where $G_{(n)}=\varnothing$ is the empty graph, we define $\beta_i(\varnothing,\varnothing)=1$ when $i=0$ and $\beta_i(\varnothing,\varnothing)=0$ otherwise.
 \end{theorem}
 
 \begin{proof}
-    By \thref{mpclemma} we have $\mathbf{G}_i=\mathbf{F}_i\oplus \mathbf{E}_{i-1}$. Therefore
-    \begin{equation*}
-        \beta_{i,\mathbf{a}}(S/I_G) = \beta_{i,\mathbf{a}}(S/J) + \beta_{i-1,\mathbf{a}}(S/(J:x_{n-1}x_n)[-\mathbf{2}]).
-    \end{equation*}
-    Observe that $J$ is an ideal contained in the subring $k[G_{\setminus n}]\subset S$, therefore its minimal free resolution considered on $S$ has the same generator multidegrees as its minimal free resolution considered on $k[G_{\setminus n}]$. In particular, no generator of $\mathbf{F}_i$ has a multidegree $\mathbf{a}$ with $a_n\neq 0$. This means that
-    \begin{equation*}
+    Let $\mathbf{a}$ be the indicator multidegree of $H$, and $S=k[V(G)]$. By \thref{mpclemma} we have $\mathbf{G}_i=\mathbf{F}_i\oplus \mathbf{E}_{i-1}$. Therefore
+    \begin{align}
+        \beta_i(G,H) = \beta_{i,\mathbf{a}}(S/I_G) &= \beta_{i,\mathbf{a}}(S/J) + \beta_{i-1,\mathbf{a}}(S/(J:x_{n-1}x_n)[-\mathbf{2}])\\
+        &= \beta_{i,\mathbf{a}}(S/J) + \beta_{i-1,\mathbf{a}-\mathbf{2}}(S/(J:x_{n-1}x_n)).
+    \end{align}
+    Observe that $J$ is an ideal contained in the subring $k[x_1,\cdots,x_{n-1}]\subset S$, therefore its minimal free resolution considered on $S$ is the same as its minimal free resolution considered on $k[x_1,\cdots,x_{n-1}]$, just with a different base ring. Using the notation of \thref{mpclemma}, no generator of $\mathbf{F}_i$ has a multidegree $\mathbf{a}$ with $a_n\neq 0$. This means that
+    \begin{equation}
         \beta_{i,\mathbf{a}}(S/J) = \left\{
             \begin{aligned}
-                &\beta_{i,\,\mathbf{a}[G_{\setminus n}]}(k[G_{\setminus n}]/I_{G_{\setminus n}}), &a_n=0,\\
+                &\beta_{i,\,(a_1,\cdots,a_{n-1})}(k[x_1,\cdots,x_{n-1}]/I_J)=\beta_i(G\setminus x_n,H), &a_n=0,\\
                 &0, &a_n=1.
             \end{aligned}
         \right.
-    \end{equation*}
+    \end{equation}
+
     On the other hand, we have
     \begin{equation*}
-        (J:x_{n-1}x_n) = (J:x_{n-1}) = I_{G_{(n)}} + (x_i\mid x_i\in N(x_{n-1}),\;i\neq n).
+        (J:x_{n-1}x_n) = (J:x_{n-1}) = I_{G_{(n)}} + (x_i\mid x_i\in N(x_{n-1})\setminus x_n).
     \end{equation*}
-    AAAAAA...
+    Write $K=(x_i\mid x_i\in N(x_{n-1})\setminus x_n)$, then $I_{G_{(n)}}$ and $K$ have completely disjoint generators. Therefore by \thref{tensor} we have
+    \begin{align*}
+        &\beta_{i-1,\mathbf{a}-\mathbf{2}}(S/(J:x_{n-1}x_n)) \\
+        &= \sum_{s+t=i-1}\beta_{s,(\mathbf{a}-\mathbf{2})[V(G_{(n)})]}(k[V(G_{(n)})]/I_{G_{(n)}})\,\cdot\,\beta_{t,(\mathbf{a}-\mathbf{2})[N(x_{n-1})\setminus x_n]}(k[N(x_{n-1})\setminus x_n]/K).
+    \end{align*}
+    Now $K$ is generated by single variables, so its minimal free resolution is the Kozsul complex on these variables. Therefore $\beta_{t,(\mathbf{a}-\mathbf{2})[N(x_{n-1})\setminus x_n]}(k[N(x_{n-1})\setminus x_n]/K)\neq 0$ if and only if $\mathbf{a}-\mathbf{2}\geqslant \mathbf{0}$ and $t$ is the number of $1$'s in $\mathbf{a}-\mathbf{2}$. This is equivalent to $a_{n-1}=a_n=1$ and $t$ equal to the number of $a_i$'s such that $a_i=1$ and $1\leqslant i<n-1$. In this case $\beta_{t,(\mathbf{a}-\mathbf{2})[N(x_{n-1})\setminus x_n]}(k[N(x_{n-1})\setminus x_n]/K)=1$ and $s=i-1-t=i-\#(N(x_{n-1})\cap H)$, so
+    \begin{equation*}
+        \beta_{s,(\mathbf{a}-\mathbf{2})[V(G_{(n)})]}(k[V(G_{(n)})]/I_{G_{(n)}}) = \beta_{i-\#(N(x_{n-1})\cap H)}(G_{(n)},H\cap G_{(n)}).
+    \end{equation*}
+    Therefore
+    \begin{equation}
+        \beta_{i-1,\mathbf{a}-\mathbf{2}}(S/(J:x_{n-1}x_n)) = \left\{
+            \begin{aligned}
+                &\beta_{i-\#(N(x_{n-1})\cap H)}(G_{(n)},H\cap G_{(n)}), &a_{n-1}=a_n=1,\\
+                &0, &\mathrm{otherwise}.
+            \end{aligned}
+        \right.
+    \end{equation}
+    The above reasoning assumed $N(x_{n-1})\setminus x_n\neq\varnothing$. If $N(x_{n-1})\setminus x_n=\varnothing$ then $(J:x_{n-1}x_n)=I_{G_{(n)}}$ and $\#(N(x_{n-1})\cap H)=1$, and so formula (5) follows directly.
+
+    Now the theorem follows from the formulas (3)(4)(5) when $G_{(n)}\neq \varnothing$. When $G_{(n)}= \varnothing$, $G$ is a star with center $x_{n-1}$, and we assume $x_{n-1},x_n\in H$ because this is always true when $G_{(n)}$ appears in the theorem. For convenience, relabel the vertices of $G$ as $\{y_0,y_1,\cdots,y_t\}$ with the center being $y_0$ and such that $y_0,y_1\in H$, so $I_G=(y_0y_1,\cdots,y_0y_t)$. Let $S=k[y_0,\cdots,y_t]$ then the minimal free resolution of $S/I_G$ is almost the Koszul complex on $\{y_1,\cdots,y_t\}$. The only difference is the differential in degree $0$: instead of $(y_1,\cdots,y_t)$ it is $(y_0y_1,\cdots,y_0y_t)$. We are assuming $y_0,y_1\in H$, and in this case the Betti number $\beta_i(G,H)=1$ if and only if $i=\#(H\cap \{y_1,\cdots,y_t\})=\#(N(y_0)\cap H)$. Therefore the theorem holds precisely when $\beta_i(\varnothing,\varnothing)$ is defined the way it is defined in the statement of the theorem.
 \end{proof}
 
-\subsection{Betti numbers}
+\subsection{Computing Betti numbers}
 
-\subsection{Classification of full trees}
+Now we turn to the computation of $\beta_i(G,H)$ for forests. \thref{deletion} provides us with a powerful tool, letting us delete leaves and reduce a forest inductively into trivial forms. We first take a look at the trivial case.
+
+\begin{proposition}\thlabel{edgeless}
+    Let $G$ be an edgeless graph with $V(G)=\{x_1,\cdots,x_t\}$ ($t\geqslant 0$) and $H\subset V(G)$, then $\beta_i(G,H)=1$ when $H=\varnothing$ and $i=0$, and $\beta_i(G,H)=0$ otherwise.
+\end{proposition}
+
+\begin{proof}
+    The ideal $I_G=0$, and its ambient ring is $S=k[x_1,\cdots,x_t]$. Its minimal free resolution is $0\to S\to 0$, so its only nonzero Betti number is $1$, lying in the multidegree $\mathbf{0}$ and homological degree $i=0$.
+\end{proof}
+
+\begin{theorem}
+    Let $T$ be a forest and $H\subset V(T)$, then $\beta_i(T,H)$ can only be $0$ or $1$, and we have
+    \begin{equation*}
+        \beta_i(T,H)=\beta_i(T[H],H).
+    \end{equation*}
+    Equivalently, $\beta_i(T,H)=1$ when the induced subforest $T[H]$ is a full graph, and $\beta_i(T,H)=0$ otherwise.
+\end{theorem}
+
+\begin{proof}
+    We provide an algorithmic procedure of deleting parts of the forest $T$ until only an edgeless graph remains. Initialize the $6$-tuple as:
+    \begin{equation*}
+        (i_0,A_0,B_0,j_0,C_0,D_0)\coloneq (i,T,H,i,T[H],H).
+    \end{equation*}
+    From $(i_t,A_t,B_t,j_t,C_t,D_t)$, pick a leaf $x_n$ and its neighbor $x_{n-1}$ in the graph $A_t$ and construct $(i_{t+1},A_{t+1},B_{t+1},j_{t+1},C_{t+1},D_{t+1})$ as follows.\\
+    \textbf{Case 1:} $x_n\notin B_t$. Set
+    \begin{align*}
+        i_{t+1}&\coloneq i_t,\\
+        A_{t+1}&\coloneq A_t\setminus x_n,\\
+        B_{t+1}&\coloneq B_t,\\
+        j_{t+1}&\coloneq j_t,\\
+        C_{t+1}&\coloneq C_t,\\
+        D_{t+1}&\coloneq D_t.\\
+    \end{align*}
+    \textbf{Case 2:} $x_{n-1}\in B_t,x_n\in B_t$. Set
+    \begin{align*}
+        i_{t+1}&\coloneq i_t-\#(N_{A_t}(x_{n-1})\cap B_t),\\
+        A_{t+1}&\coloneq A_t[V(A_t)\setminus N_{A_t}(x_{n-1})\cup\{x_{n-1}\}],\\
+        B_{t+1}&\coloneq B_t\cap V(A_{t+1}),\\
+        j_{t+1}&\coloneq j_t-\#(N_{C_t}(x_{n-1})\cap D_t),\\
+        C_{t+1}&\coloneq C_t[V(C_t)\setminus N_{C_t}(x_{n-1})\cup\{x_{n-1}\}],\\
+        D_{t+1}&\coloneq D_t\cap V(C_{t+1}).\\
+    \end{align*}
+    \textbf{Case 3:} $x_{n-1}\notin B_t,x_n\in B_t$. Terminate.\\
+    \textbf{Case 4:} $A_t$ is an edgeless graph. Terminate.
+
+    There are a few things to prove. First, it is clear from \thref{deletion} that $\beta_{i_t}(A_t,B_t)=\beta_{i_{t+1}}(A_{t+1},B_{t+1})$ and $\beta_{j_t}(C_t,D_t)=\beta_{j_{t+1}}(C_{t+1},D_{t+1})$. Therefore $\beta_{i_t}(A_t,B_t)=\beta_{i}(T,H)$ and $\beta_{j_t}(C_t,D_t)=\beta_{i}(T[H],H)$. Second, we have the following relations.
+    \begin{align*}
+        C_t&=A_t[B_t],\\
+        D_t&=B_t,\\
+        j_t&=i_t.
+    \end{align*}
+    For Case 1 they are obvious. For Case 2, we prove them inductively on $t$. Suppose that they hold for $t$, then:\\
+    (1) $C_{t+1}$ consists of the vertices in $C_t=A_t[B_t]$ that are not adjacent to $x_{n-1}$ and not equal to $x_{n-1}$, and $A_{t+1}$ consists of the vertices in $A_t$ that are not adjacent to $x_{n-1}$ and not equal to $x_{n-1}$. Therefore, the vertices of $C_{t+1}$ are precisely the vertices of $A_{t+1}$ that lie in $B_t$, so $C_{t+1}=A_{t+1}[B_t\cap V(A_{t+1})]=A_{t+1}[B_{t+1}]$.\\
+    (2) $D_{t+1}=D_t\cap V(C_{t+1})=B_t\cap V(A_{t+1}[B_{t+1}])=B_{t+1}$.\\
+    (3) $V(C_t)=V(A_t[B_t])=B_t=D_t$, so $N_{C_t}(x_{n-1})\cap D_t=N_{C_t}(x_{n-1})=N_{A_t[B_t]}(x_{n-1})=N_{A_t}(x_{n-1})\cap B_t$. Therefore $j_t=i_t$ implies $j_{t+1}=i_{t+1}$.\\
+    These results show that
+    \begin{align*}
+        \beta_i(T,H)&=\beta_{i_t}(A_t,B_t),\\
+        \beta_i(T[H],H)&=\beta_{i_t}(A_t[B_t],B_t).
+    \end{align*}
+    The operations of Case 1 and Case 2 are only valid when both $A_t$ and $C_t$ have at least one edge. If $A_t$ is edgeless then we reach Case 3 which terminates the algorithm. If $C_t$ is edgeless but $A_t$ is not, then $C_t=A_t[B_t]$ is a union of isolated points of $A_t$, and so the connected components that contain edges are disjoint from the vertex set $B_t$, so we can choose a leaf from these components and this will fall into Case 1. This shows that this algorithm can indeed run until it terminates at Case 3 or Case 4.
+    
+    If the algorithm terminates at Case 3, then $\beta_{i_t}(A_t,B_t)=0$ by \thref{deletion}. The subforest $C_t$ has an isolated point, so $\beta_{i_t}(C_t)=0$. Therefore $\beta_i(T,H)=\beta_i(T[H],H)=0$.
+
+    If the algorithm terminates at Case 4, then $A_t$ is an edgeless graph. By \thref{edgeless}, $\beta_{i_t}(A_t,B_t)=1$ precisely when $i_t=0$ and $B_t=\varnothing$, and this is also precisely when $\beta_{i_t}(A_t[B_t],B_t)=1$. Therefore $\beta_i(T,H)=\beta_i(T[H],H)$.
+\end{proof}
+
+\subsection{Classification of full forests}
 
 
 
@@ -274,7 +378,7 @@ Let $G$ be a graph with $n+1$ vertices and $S=k[x_0,\cdots,x_n]$. Let $I_G$ be i
 
 Let $d_i=\deg m_i$ and $\mathbf{d}=(d_0,\cdots,d_n)$, then $|f(\mathbf{a})|=\mathbf{a}\cdot \mathbf{d}$. Now suppose that, when we are dealing with $S/I_G$, instead of the ordinary $\mathbb{Z}$-grading of $S$ where each variable $x_i$ had degree $1$, we worked with a $\mathbb{Z}$-grading of $S$ where $x_i$ had degree $d_i$. It follows that the degree of $\mathbf{x}^\mathbf{a}$ would be $\mathbf{a}\cdot \mathbf{d}=|f(\mathbf{a})|$ instead of $|\mathbf{a}|$. That is, the degree of every generator of every free module in the resolution of $S/I_G$, under the grading $\deg x_i=d_i$, is the same as the degree of every generator of every free module in the resolution of $S/J_G$, under the grading $\deg x_i=1$. This means that the regularity and $\mathbb{Z}$-graded Betti numbers of the generalized edge ideal is equivalent to the regularity and $\mathbb{Z}$-graded Betti numbers of the ordinary edge ideal, under another $\mathbb{Z}$-grading. Therefore, in the rest of this paper, we will only focus on the ordinary edge ideal under other $\mathbb{Z}$-gradings.
 
-Now suppose we start with a graph $G$ with $V(G)=\{x_0,\cdots,x_n\}$, then $S=k[x_0,\cdots,x_n]$. If we add $t_i$ extra variables to the vertex $x_i$, then $x_i$ would have $1+t_i$ variables. In light of the discussion in the previous paragraph, this is equivalent to the having a grading on $S$ with $\deg x_i=1+t_i$. We call this ``adding $t_i$ degrees to the vertex $x_i$.'' Let $N=t_0+\cdots t_n$, then we also say we ``added $N$ degrees to the graph.'' Now by Hochster's formula (\thref{hochster}), all non-zero Betti numbers of $S/I_G$ lie in square-free multi-degrees. For a square-free multi-degree $\mathbf{a}$, we obviously have $|\mathbf{a}|\leqslant|f(\mathbf{a})| \leqslant |\mathbf{a}| + N$. That is, after adding $N$ degrees to the graph, the $\mathbb{Z}$-degree of every generator in the minimal free resolution of $S/I_G$ increases by at most $N$. By the definition of regularity we have
+Now suppose we start with a graph $G$ with $V(G)=\{x_0,\cdots,x_n\}$, then $S=k[x_0,\cdots,x_n]$. If we add $t_i$ extra variables to the vertex $x_i$, then $x_i$ would have $1+t_i$ variables. In light of the discussion in the previous paragraph, this is equivalent to the having a grading on $S$ with $\deg x_i=1+t_i$. We call this ``adding $t_i$ degrees to the vertex $x_i$.'' Let $N=t_0+\cdots t_n$, then we also say we ``added $N$ degrees to the graph.'' Now by Hochster's formula (\thref{hochster}), all non-zero Betti numbers of $S/I_G$ lie in square-free multidegrees. For a square-free multidegree $\mathbf{a}$, we obviously have $|\mathbf{a}|\leqslant|f(\mathbf{a})| \leqslant |\mathbf{a}| + N$. That is, after adding $N$ degrees to the graph, the $\mathbb{Z}$-degree of every generator in the minimal free resolution of $S/I_G$ increases by at most $N$. By the definition of regularity we have
 
 \begin{proposition}\thlabel{plusn}
     Let $I_G$ be the ordinary edge ideal of a graph $G$ and $J_G$ be its edge ideal after adding $N$ degrees. Then
