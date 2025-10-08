@@ -92,7 +92,6 @@ The following theorem from \cite{welker1999lcm} states that ideals with isomorph
     Let $I$ and $J$ be monomial ideals. Suppose that $f:L_I\to L_J$ is a bijection of the underlying sets and preserves joins. Let $\mathbf{F}$ be the minimal free resolution of $S/I$, then $f(\mathbf{F})$ is the minimal free resolution of $S/J$.
 \end{theorem}
 
-
 \section{Edge Ideals of Trees}
 
 Trees are a type of very simple graphs whose Betti numbers are relatively simple to compute. In this section, we present a new proof to a leaf deletion theorem in \cite{bouchat}, and use it to compute the Betti numbers of trees.
@@ -181,7 +180,7 @@ By Hochster's formula, the non-zero Betti numbers of graphs only appear in squar
     \begin{equation*}
         (J:x_{n-1}x_n) = (J:x_{n-1}) = I_{G_{(n)}} + (x_i\mid x_i\in N(x_{n-1})\setminus x_n).
     \end{equation*}
-    Write $K=(x_i\mid x_i\in N(x_{n-1})\setminus x_n)$, then $I_{G_{(n)}}$ and $K$ have completely disjoint generators. Therefore by \thref{tensor} we have
+    Write $K=(x_i\mid x_i\in N(x_{n-1})\setminus x_n)$, then $I_{G_{(n)}}$ and $K$ have completely disjoint generators. By the technical lemma presented after this proof (\thref{tensor}), we have
     \begin{align*}
         &\beta_{i-1,\mathbf{a}-\mathbf{2}}(S/(J:x_{n-1}x_n)) \\
         &= \sum_{s+t=i-1}\beta_{s,(\mathbf{a}-\mathbf{2})[V(G_{(n)})]}(k[V(G_{(n)})]/I_{G_{(n)}})\,\cdot\,\beta_{t,(\mathbf{a}-\mathbf{2})[N(x_{n-1})\setminus x_n]}(k[N(x_{n-1})\setminus x_n]/K).
@@ -202,6 +201,16 @@ By Hochster's formula, the non-zero Betti numbers of graphs only appear in squar
     The above reasoning assumed $N(x_{n-1})\setminus x_n\neq\varnothing$. If $N(x_{n-1})\setminus x_n=\varnothing$ then $(J:x_{n-1}x_n)=I_{G_{(n)}}$ and $\#(N(x_{n-1})\cap H)=1$, and so formula (5) follows directly.
 
     Now the theorem follows from the formulas (3)(4)(5) when $G_{(n)}\neq \varnothing$. When $G_{(n)}= \varnothing$, $G$ is a star with center $x_{n-1}$, and we assume $x_{n-1},x_n\in H$ because this is always true when $G_{(n)}$ appears in the theorem. For convenience, relabel the vertices of $G$ as $\{y_0,y_1,\cdots,y_t\}$ with the center being $y_0$ and such that $y_0,y_1\in H$, so $I_G=(y_0y_1,\cdots,y_0y_t)$. Let $S=k[y_0,\cdots,y_t]$ then the minimal free resolution of $S/I_G$ is almost the Koszul complex on $\{y_1,\cdots,y_t\}$. The only difference is the differential in degree $0$: instead of $(y_1,\cdots,y_t)$ it is $(y_0y_1,\cdots,y_0y_t)$. We are assuming $y_0,y_1\in H$, and in this case the Betti number $\beta_i(G,H)=1$ if and only if $i=\#(H\cap \{y_1,\cdots,y_t\})=\#(N(y_0)\cap H)$. Therefore the theorem holds precisely when $\beta_i(\varnothing,\varnothing)$ is defined the way it is defined in the statement of the theorem.
+\end{proof}
+
+The above proof used the following lemma.
+
+\begin{lemma}\thlabel{tensor}
+    Let $S=k[x_1,\cdots,x_m]$ and $S'=k[y_1,\cdots,y_n]$, with $I\subset S$ and $J\subset S'$ monomial ideals. 
+\end{lemma}
+
+\begin{proof}
+    AAAAAA.
 \end{proof}
 
 \subsection{Computing Betti numbers}
