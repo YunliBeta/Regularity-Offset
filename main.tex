@@ -303,11 +303,11 @@ Now we turn to the computation of $\beta_i(G,H)$ for forests. \thref{deletion} p
 
 \thref{subtree} shows that the nonzero Betti numbers of forests only occur in full subforests. Therefore the problem of computing all Betti numbers of forests is reduced to finding full forests and the right $i$ such that $\beta_i(T,V(T))=1$ when $T$ is full.
 
-\begin{defi}
+\begin{defi}\thlabel{deletiondef}
     Let $T$ be a forest. Define the \textbf{deletion operation} as: Pick a leaf and denote its neighbor by $v$, then delete the closed neighborhood of $v$ from the tree. By deleting a set of vertices, we mean removing all vertices in this set and all edges with at least one endpoint in this set. This deletion operation is always possible when $T$ is not edgeless.
 \end{defi}
 
-\begin{theorem}
+\begin{theorem}\thlabel{full}
     Let $T$ be a forest, then $T$ is full if and only if $T$ can be reduced to the empty graph using the deletion operation. When $T$ is full, denote by $N$ the number of deletion operations performed to reduce it to the empty graph, then $\beta_i(T,V(T))=1$ precisely when $i=|V(T)|-N$.
 \end{theorem}
 
@@ -338,9 +338,97 @@ Putting together all the results of this section, we have the following theorem.
     \textbf{(3)} $i=|H|-N$, where $N$ is the number of deletion operations required to reduce $T[H]$ to $\varnothing$.
 \end{theorem}
 
-\subsection{Paths and spiders}
+We now provide a faster deletion operation that makes it easier to determine whether a tree is full.
+
+Let $T$ be a tree and $x,y\in V(T)$. There is a unique path between $x$ and $y$, which we denote as $P(x,y)$, both ends inclusive. We denote the length of this path by $d(x,y)$. Now let $x$ be a leaf and define the following \textbf{special neighborhood}:
+\begin{equation*}
+    \tilde{N}(x) \coloneq \{\,y\in V(T)\mid P(x,y)\text{ does not contain a vertex }z\text{ such that }\deg z \neq 2\text{ and }3\,|\,d(x,z)\,\}.
+\end{equation*}
+
+\begin{theorem}\thlabel{fast}
+    Let $T$ be a tree and $x$ a leaf, then the subforest
+    \begin{equation*}
+        T\setminus \tilde{N}(x) = T[V(T)\setminus \tilde{N}(x)]
+    \end{equation*}
+    can be obtained from $T$ by performing a certain number of deletion operations (\thref{deletiondef}).
+\end{theorem}
+
+We now use the previous results to classify full paths and full spiders.
+
+\begin{proposition}
+    Let $T_n$ be the path of length $n$, then $T_n$ is full if and only if $3\nmid n$.
+\end{proposition}
+
+\begin{proof}
+    Let $x,y$ be the two leaves of $T_n$. If $3\,|\,n$ then $\tilde{N}(x)=V(T_n)\setminus \{y\}$, and if $3\nmid n$ then $\tilde{N}(x)=V(T_n)$. The result follows from \thref{fast} and \thref{full}.
+\end{proof}
+
+We call a graph with precisely one vertex of degree $>2$ a \textbf{spider}. We call this vertex the center, and call by limbs the paths between the center and a leaf.
 
 
+\vspace{10pt}
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Circle [id:dp9289362474454589] 
+\draw   (99.69,165.31) .. controls (99.69,162.55) and (101.93,160.31) .. (104.69,160.31) .. controls (107.45,160.31) and (109.69,162.55) .. (109.69,165.31) .. controls (109.69,168.07) and (107.45,170.31) .. (104.69,170.31) .. controls (101.93,170.31) and (99.69,168.07) .. (99.69,165.31) -- cycle ;
+%Shape: Circle [id:dp5246857754473603] 
+\draw   (99.69,105.31) .. controls (99.69,102.55) and (101.93,100.31) .. (104.69,100.31) .. controls (107.45,100.31) and (109.69,102.55) .. (109.69,105.31) .. controls (109.69,108.07) and (107.45,110.31) .. (104.69,110.31) .. controls (101.93,110.31) and (99.69,108.07) .. (99.69,105.31) -- cycle ;
+%Shape: Circle [id:dp6671323602377446] 
+\draw   (99.69,45.31) .. controls (99.69,42.55) and (101.93,40.31) .. (104.69,40.31) .. controls (107.45,40.31) and (109.69,42.55) .. (109.69,45.31) .. controls (109.69,48.07) and (107.45,50.31) .. (104.69,50.31) .. controls (101.93,50.31) and (99.69,48.07) .. (99.69,45.31) -- cycle ;
+%Shape: Circle [id:dp65022849880934] 
+\draw   (39.69,165.31) .. controls (39.69,162.55) and (41.93,160.31) .. (44.69,160.31) .. controls (47.45,160.31) and (49.69,162.55) .. (49.69,165.31) .. controls (49.69,168.07) and (47.45,170.31) .. (44.69,170.31) .. controls (41.93,170.31) and (39.69,168.07) .. (39.69,165.31) -- cycle ;
+%Shape: Circle [id:dp6418268728639224] 
+\draw   (159.69,165.31) .. controls (159.69,162.55) and (161.93,160.31) .. (164.69,160.31) .. controls (167.45,160.31) and (169.69,162.55) .. (169.69,165.31) .. controls (169.69,168.07) and (167.45,170.31) .. (164.69,170.31) .. controls (161.93,170.31) and (159.69,168.07) .. (159.69,165.31) -- cycle ;
+%Shape: Circle [id:dp2787063229807829] 
+\draw   (219.69,165.31) .. controls (219.69,162.55) and (221.93,160.31) .. (224.69,160.31) .. controls (227.45,160.31) and (229.69,162.55) .. (229.69,165.31) .. controls (229.69,168.07) and (227.45,170.31) .. (224.69,170.31) .. controls (221.93,170.31) and (219.69,168.07) .. (219.69,165.31) -- cycle ;
+%Shape: Circle [id:dp7561010118204929] 
+\draw   (99.69,225.31) .. controls (99.69,222.55) and (101.93,220.31) .. (104.69,220.31) .. controls (107.45,220.31) and (109.69,222.55) .. (109.69,225.31) .. controls (109.69,228.07) and (107.45,230.31) .. (104.69,230.31) .. controls (101.93,230.31) and (99.69,228.07) .. (99.69,225.31) -- cycle ;
+%Shape: Circle [id:dp9372627879078528] 
+\draw   (99.69,285.31) .. controls (99.69,282.55) and (101.93,280.31) .. (104.69,280.31) .. controls (107.45,280.31) and (109.69,282.55) .. (109.69,285.31) .. controls (109.69,288.07) and (107.45,290.31) .. (104.69,290.31) .. controls (101.93,290.31) and (99.69,288.07) .. (99.69,285.31) -- cycle ;
+%Shape: Circle [id:dp11961602919951786] 
+\draw   (280.69,165.31) .. controls (280.69,162.55) and (282.93,160.31) .. (285.69,160.31) .. controls (288.45,160.31) and (290.69,162.55) .. (290.69,165.31) .. controls (290.69,168.07) and (288.45,170.31) .. (285.69,170.31) .. controls (282.93,170.31) and (280.69,168.07) .. (280.69,165.31) -- cycle ;
+%Straight Lines [id:da1245642006604587] 
+\draw    (104.69,50.31) -- (104.69,100.31) ;
+%Straight Lines [id:da4502484852521308] 
+\draw    (104.69,110.31) -- (104.69,160.31) ;
+%Straight Lines [id:da26939361128521044] 
+\draw    (104.69,170.31) -- (104.69,220.31) ;
+%Straight Lines [id:da8438010501555864] 
+\draw    (104.69,230.31) -- (104.69,280.31) ;
+%Straight Lines [id:da011768680116380548] 
+\draw    (49.69,165.31) -- (99.69,165.31) ;
+%Straight Lines [id:da6006030329211683] 
+\draw    (109.69,165.31) -- (159.69,165.31) ;
+%Straight Lines [id:da24497375752902406] 
+\draw    (169.69,165.31) -- (219.69,165.31) ;
+%Straight Lines [id:da057457900131846595] 
+\draw    (229.69,165.31) -- (280.69,165.31) ;
+
+
+
+
+\end{tikzpicture}\\
+\vspace{6pt}
+A spider with limbs of length 1,2,2,3.
+\end{center}
+
+\begin{proposition}
+    A spider is full if and only if one of the following holds:\\
+    (a) It has limbs of length $2\;(\mathrm{mod}\;3)$ but not limbs of length $1\;(\mathrm{mod}\;3)$.\\
+    (b) It has limbs of length $1\;(\mathrm{mod}\;3)$ but not limbs of length $2\;(\mathrm{mod}\;3)$.
+\end{proposition}
+
+\begin{proof}
+    Let $T$ be a spider. Observe that:\\
+    If $x$ is the leaf of a limb of length $0\;(\mathrm{mod}\;3)$, then $\tilde{N}(x)$ is the limb minus the center.\\
+    If $x$ is the leaf of a limb of length $1\;(\mathrm{mod}\;3)$, then $\tilde{N}(x)$ is $V(T)$ minus all leaves of limbs of length $2\;(\mathrm{mod}\;3)$.\\
+    If $x$ is the leaf of a limb of length $2\;(\mathrm{mod}\;3)$, then $\tilde{N}(x)$ is $V(T)$ minus all leaves of limbs of length $1\;(\mathrm{mod}\;3)$.\\
+    The result follows from \thref{fast} and \thref{full}.
+\end{proof}
 
 \section{Adding Variables and Adding Degrees}
 
