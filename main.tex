@@ -41,11 +41,11 @@ a square-free quadratic ideal $I_G$ over a field $k$ via $I_G=(x_ix_j | ij\in E(
 One can observe that the edge ideal $I_G$ is the Stanley-Reisner ideal of $\Delta G^c$. Hence, we have a one-to-one correspondence between the family of simple graphs and the family of clique complexes. Moreover, homology of simplicial complexes $\Delta G^c$ can give Betti numbers of $I_G$ via Hochster's formula.
 
 \begin{theorem}\thlabel{hochster}[Hochster's formula]
-    Let $I_G$ be the edge ideal of a graph $G$. Then for $i\geq 0$ and squarefree degree $\mathbf{b}$,
+    Let $I_G$ be the edge ideal of a graph $G$. Then for $i\geq 0$ and square-free degree $\mathbf{b}$,
     \begin{equation*}
         \beta_{i,\mathbf{b}}(I_G)=dim_k(\widetilde{H}_{|\mathbf{b}|-i-2}\left(\Delta G^c[supp(\mathbf{b})], k\right)),
     \end{equation*}
-    and $\beta_{i,\mathbf{b}}(I_G)=0$ if $\bf{b}$ is not squarefree. If we forget the multigrading, then for $j\geq0$,
+    and $\beta_{i,\mathbf{b}}(I_G)=0$ if $\bf{b}$ is not square-free. If we forget the multigrading, then for $j\geq0$,
     \begin{equation*}
         \beta_{i,i+j}(I_G)=\sum_{|W|=i+j}dim_k(\widetilde{H}_{j-2}\left(\Delta G^c[W], k\right)),
     \end{equation*}
@@ -94,11 +94,11 @@ The following theorem from \cite{welker1999lcm} states that ideals with isomorph
 
 \section{Edge Ideals of Trees}
 
-Trees are a type of very simple graphs whose Betti numbers are relatively simple to compute. In this section, we present a new proof to a leaf deletion theorem in \cite{bouchat}, and use it to compute the Betti numbers of trees.
+Trees are a type of very simple graphs whose Betti numbers are relatively simple to compute. In this section, we present a new proof to a leaf deletion theorem in \cite{bouchat}, and use it to compute the Betti numbers of forests.
 
 \subsection{Full graphs and a leaf deletion theorem}
 
-By Hochster's formula (\thref{hochster}), the nonzero Betti numbers of a graph can appear only in squarefree multidegrees. The largest such multidegree is $\mathbf{1}=(1,\cdots,1)$, and we make the following definition.
+By Hochster's formula (\thref{hochster}), the nonzero Betti numbers of a graph can appear only in square-free multidegrees. The largest such multidegree is $\mathbf{1}=(1,\cdots,1)$, and we make the following definition.
 \begin{defi}\thlabel{fulldef}
     A \textbf{full graph} is a graph $G$ such that for some $i$ we have $\beta_{i,\mathbf{1}}(I_G)\neq 0$. A \textbf{full subgraph} of a graph $G$ is an induced subgraph $H$ that is itself a full graph.
 \end{defi}
@@ -137,12 +137,14 @@ We now turn to a leaf deletion theorem, implicitly mentioned in \cite{bouchat}, 
             \cdots \arrow[r]  & \mathbf{F}_{t+1}\arrow[r, "{d_{t+1}^\mathbf{F}}"]  & \mathbf{F}_t \arrow[r, "{d_{t}^\mathbf{F}}"] & \mathbf{F}_{t-1}\arrow[r, "{d_{t-1}^\mathbf{F}}"]  & \cdots
         \end{tikzcd}
     \end{equation*}
-    We abuse notation a little and set $\mathbf{E}_{-1}=S/(J:x_{n-1}x_n)$ and $\mathbf{F}_{-1}=S/J$ and $\phi_{-1}=x_{n-1}x_n$. The inductive construction of $\phi$ is as follows. Having constructed $\phi_t$, we have $d_t^\mathbf{F}\,\phi_t\,d_{t+1}^\mathbf{E}=\phi_{t-1}\,d_{t}^\mathbf{E}\,d_{t+1}^\mathbf{E}=0$, so $\mathrm{im}(\phi_t\,d_{t+1}^\mathbf{E})\subset \ker d_t^\mathbf{F}=\mathrm{im}\:d_{t+1}^\mathbf{F}$. For every generator $e_i$ of $\mathbf{E}_{t+1}$, pick a $f_i\in \mathbf{F}_{t+1}$ such that $d_{t+1}(f_i)=\phi_t(d_{t+1}(e_i))$, and this selection defines the map $\phi_{t+1}$.
+    Set $\mathbf{E}_{-1}=S/(J:x_{n-1}x_n)$ and $\mathbf{F}_{-1}=S/J$ and $\phi_{-1}=x_{n-1}x_n$, then $\mathbf{E}$ and $\mathbf{F}$ both become exact complexes. The inductive construction of $\phi$ is as follows. Having constructed $\phi_t$, we have $d_t^\mathbf{F}\,\phi_t\,d_{t+1}^\mathbf{E}=\phi_{t-1}\,d_{t}^\mathbf{E}\,d_{t+1}^\mathbf{E}=0$, so $\mathrm{im}(\phi_t\,d_{t+1}^\mathbf{E})\subset \ker d_t^\mathbf{F}=\mathrm{im}\:d_{t+1}^\mathbf{F}$. For every generator $e_i$ of $\mathbf{E}_{t+1}$, pick a $f_i\in \mathbf{F}_{t+1}$ such that $d_{t+1}(f_i)=\phi_t(d_{t+1}(e_i))$, and this selection defines the map $\phi_{t+1}$.
     
-    We now prove by induction that the image of every $\phi_t$ lies in $x_{n-1}x_n\mathbf{F}_t$, which proves the lemma. The base case $\phi_{-1}$ already holds. Suppose that this is true for $\phi_t$, then for every generator $e_i$ of $\mathbf{F}_{t+1}$ we have $\phi_t(d_{t+1}(e_i))=x_{n-1}x_n\epsilon_i$ for some $\epsilon_i\in \mathbf{F}_t$. Now $x_{n-1}x_n\epsilon_i\in \ker d_{t}^\mathbf{F}$ implies that $\epsilon_i\in \ker d_{t}^\mathbf{F}=\mathrm{im}\: d_{t+1}^\mathbf{F}$. Therefore there exists $f_i\in \mathbf{F}_{t+1}$ such that $d_{t+1}(f_i)=\epsilon_i$. The map $\phi_{t+1}$ can be taken to send $e_i$ to $x_{n-1}x_nf_i$.
+    We now prove by induction that the image of every $\phi_t$ lies in $x_n\mathbf{F}_t$, which proves the lemma. Suppose that this is true for $\phi_t$, then for every generator $e_i$ of $\mathbf{F}_{t+1}$ we have $\phi_t(d_{t+1}(e_i))=x_n\epsilon_i$ for some $\epsilon_i\in \mathbf{F}_t$. Now $x_n\epsilon_i\in \ker d_{t}^\mathbf{F}$ implies that $x_nd_t^{\mathbf{F}}(\epsilon_i)=0$ in $\mathbf{F}_{t-1}$. When $t\geqslant 1$, $\mathbf{F}_{t-1}$ is a free module which has no torsion, so $d_t^{\mathbf{F}}(\epsilon_i)=0$. Therefore $\epsilon_i\in \ker d_{t}^\mathbf{F}=\mathrm{im}\: d_{t+1}^\mathbf{F}$. Therefore there exists $f_i\in \mathbf{F}_{t+1}$ such that $d_{t+1}(f_i)=\epsilon_i$. The map $\phi_{t+1}$ can be taken to send $e_i$ to $x_nf_i$.
+
+    The above inductive step only holds for $t\geqslant 1$, so we still have to prove the base cases $t=-1,0,1$. The cases $t=-1$ and $0$ are obvious, as $\phi_{-1}$ and $\phi_0$ are both multiplication by $x_{n-1}x_n$. For the final case $\phi_1$, we can still use the inductive step with $t=0$, because although $\mathbf{F}_{-1}=S/J$ is not torsion-free, $x_n\xi=0$ still implies $\xi=0$ for $\xi\in S/J$.
 \end{proof}
 
-By Hochster's formula, the non-zero Betti numbers of graphs only appear in squarefree multidegrees. Squarefree multidegrees are in one-to-one correspondence with subsets of the vertex set, so we introduce the following notation. For a graph $G$ with $V(G)=\{x_1,\cdots,x_n\}$ and a subset $H\subset V(G)$, write $\beta_i(G,H)$ for the betti number $\beta_{i,\mathbf{a}}(k[V(G)]/I_G)$, where $a_i=1$ when $x_i\in H$ and $a_i=0$ when $x_i\notin H$. We abbreviate $\beta_i(G,V(G))$ as $\beta_i(G)$, so full graphs are graphs with $\beta_i(G)=1$ for some $i$.
+By Hochster's formula, the non-zero Betti numbers of graphs only appear in square-free multidegrees. square-free multidegrees are in one-to-one correspondence with subsets of the vertex set, so we introduce the following notation. For a graph $G$ with $V(G)=\{x_1,\cdots,x_n\}$ and a subset $H\subset V(G)$, write $\beta_i(G,H)$ for the betti number $\beta_{i,\mathbf{a}}(k[V(G)]/I_G)$, where $a_i=1$ when $x_i\in H$ and $a_i=0$ when $x_i\notin H$. We abbreviate $\beta_i(G,V(G))$ as $\beta_i(G)$, so full graphs are graphs with $\beta_i(G)=1$ for some $i$.
 
 \begin{theorem}[Leaf deletion theorem]\thlabel{deletion}
     Let $G$ be a graph with $V(G)=\{x_1,\cdots,x_n\}$ and $H\subset V(G)$. Suppose $x_n$ is a leaf of $G$ and $x_{n-1}$ its neighbor. Then
@@ -206,11 +208,28 @@ By Hochster's formula, the non-zero Betti numbers of graphs only appear in squar
 The above proof used the following lemma.
 
 \begin{lemma}\thlabel{tensor}
-    Let $S=k[x_1,\cdots,x_m]$ and $S'=k[y_1,\cdots,y_n]$, with $I\subset S$ and $J\subset S'$ monomial ideals. 
+    Let $S=k[x_1,\cdots,x_m]$ and $T=k[y_1,\cdots,y_n]$, with $I\subset S$ and $J\subset T$ monomial ideals. Let $R=k[x_1,\cdots,x_m,y_1,\cdots,y_n]$ and $I',J'$ ideals of $R$ with the same generators as $I$ and $J$ respectively. Let $\mathbf{a}\in\mathbb{N}^m$ and $\mathbf{b}\in\mathbb{N}^n$. Then
+    \begin{equation*}
+        \beta_{i,(\mathbf{a},\mathbf{b})}^R(R/(I'+J')) = \sum_{i+j=t}\beta_{i,\mathbf{a}}^S(S/I)\beta_{j,\mathbf{b}}^T(T/J),
+    \end{equation*}
+    where $\beta_t^R$ denotes that the free resolution uses free $R$-modules.
 \end{lemma}
 
 \begin{proof}
-    AAAAAA.
+    It is clear that
+    \begin{align*}
+        \beta_{i,\mathbf{a}}^S(S/I)&=\beta_{i,(\mathbf{a},0)}^R(R/I'),\\
+        \beta_{j,\mathbf{b}}^T(T/J)&=\beta_{j,(0,\mathbf{b})}^R(R/J').
+    \end{align*}
+    Therefore we only need to prove
+    \begin{equation*}
+        \beta_{i,(\mathbf{a},\mathbf{b})}^R(R/(I'+J')) = \sum_{i+j=t}\beta_{i,(\mathbf{a},0)}^R(R/I')\beta_{j,(0,\mathbf{b})}^R(R/J').
+    \end{equation*}
+    Let $\mathbf{F}$ and $\mathbf{G}$ be the minimal free resolutions of $R/I'$ and $R/J'$ respectively, then the generators in $\mathbf{F}_i$ can only have multidegrees $(\mathbf{a},0)$ and the generators in $\mathbf{G}_j$ can only have multidegrees $(0,\mathbf{b})$. Consider the tensor product complex $\mathbf{H}=\mathbf{F}\otimes_R \mathbf{G}$. The tensor product of a generator of degree $(\mathbf{a},0)$ and a generator of degree $(0,\mathbf{b})$ is a generator in $\mathbf{H}_{i+j}$ of degree $(\mathbf{a},\mathbf{b})$. If $\mathbf{H}$ is the minimal free resolution of $R/(I'+J')$ then the above formula follows immediately.
+
+    The matrix of $d_t^\mathbf{H}$ is consists of the matrix tensor products $d_i^\mathbf{F}\otimes d_j^\mathbf{G}$ for $i+j=t$. Now $\mathbf{F}$ and $\mathbf{G}$ being minimal implies that $d_i^\mathbf{F}$ and $d_j^\mathbf{G}$ has no nonzero constants, so $d_i^\mathbf{F}\otimes d_j^\mathbf{G}$ has no nonzero constants, and so $\mathbf{H}$ is minimal if it is a resolution.
+
+    To prove $\mathbf{H}$ is a resolution, we use the spectral sequence $\{E_{i,j}^d\}$ of the total complex $\{\mathbf{F}_i\otimes \mathbf{G}_j\}_{i,j}$. The $1$st page $\{E^1_{i,j}\}$ consists of the homology of the rows $\mathbf{F}_{\ast}\otimes \mathbf{G}_j$ of the double complex. As each $\mathbf{G}_j$ is free so flat, we have $E^1_{i,j}=H_i(\mathbf{F})\otimes \mathbf{G}_j$, so $E^1_{i,j}=0$ when $i\neq 0$ and $E^1_{0,j}=(R/I')\otimes \mathbf{G}_j$. The differentials $d^1_{0,j}=(R/I')\otimes d^\mathbf{G}_j$. Therefore the $2$nd page is $E^2_{0,j}=\mathrm{Tor}_j(R/I',R/J')$ and $E^2_{i,j}=0$ when $i\neq 0$. The differentials $d^2_{i,j}=0$, so $E^\infty_{i,j}=E^2_{i,j}$. Therefore the homology $H_t(\mathbf{F}\otimes \mathbf{G})\cong\mathrm{Tor}_t(R/I',R/J')$. As $I'$ and $J'$ are monomial ideals whose generators are formed by two disjoint sets of variables, a simple computation shows that $\mathrm{Tor}_t(R/I',R/J')=0$ when $t>0$, so $\mathbf{H}$ is indeed a resolution of $\mathrm{Tor}_0(R/I',R/J')=R/I'\otimes R/J'\cong R/(I'+J')$.
 \end{proof}
 
 \subsection{Computing Betti numbers}
@@ -225,12 +244,12 @@ Now we turn to the computation of $\beta_i(G,H)$ for forests. \thref{deletion} p
     The ideal $I_G=0$, and its ambient ring is $S=k[x_1,\cdots,x_t]$. Its minimal free resolution is $0\to S\to 0$, so its only nonzero Betti number is $1$, lying in the multidegree $\mathbf{0}$ and homological degree $i=0$.
 \end{proof}
 
-\begin{theorem}
+\begin{theorem}\thlabel{subtree}
     Let $T$ be a forest and $H\subset V(T)$, then $\beta_i(T,H)$ can only be $0$ or $1$, and we have
     \begin{equation*}
         \beta_i(T,H)=\beta_i(T[H],H).
     \end{equation*}
-    Equivalently, $\beta_i(T,H)=1$ when the induced subforest $T[H]$ is a full graph, and $\beta_i(T,H)=0$ otherwise.
+    Therefore, $\beta_i(T,H)=1$ only when $T[H]$ is a full graph.
 \end{theorem}
 
 \begin{proof}
@@ -246,7 +265,7 @@ Now we turn to the computation of $\beta_i(G,H)$ for forests. \thref{deletion} p
         B_{t+1}&\coloneq B_t,\\
         j_{t+1}&\coloneq j_t,\\
         C_{t+1}&\coloneq C_t,\\
-        D_{t+1}&\coloneq D_t.\\
+        D_{t+1}&\coloneq D_t.
     \end{align*}
     \textbf{Case 2:} $x_{n-1}\in B_t,x_n\in B_t$. Set
     \begin{align*}
@@ -255,7 +274,7 @@ Now we turn to the computation of $\beta_i(G,H)$ for forests. \thref{deletion} p
         B_{t+1}&\coloneq B_t\cap V(A_{t+1}),\\
         j_{t+1}&\coloneq j_t-\#(N_{C_t}(x_{n-1})\cap D_t),\\
         C_{t+1}&\coloneq C_t[V(C_t)\setminus N_{C_t}(x_{n-1})\cup\{x_{n-1}\}],\\
-        D_{t+1}&\coloneq D_t\cap V(C_{t+1}).\\
+        D_{t+1}&\coloneq D_t\cap V(C_{t+1}).
     \end{align*}
     \textbf{Case 3:} $x_{n-1}\notin B_t,x_n\in B_t$. Terminate.\\
     \textbf{Case 4:} $A_t$ is an edgeless graph. Terminate.
@@ -282,7 +301,44 @@ Now we turn to the computation of $\beta_i(G,H)$ for forests. \thref{deletion} p
     If the algorithm terminates at Case 4, then $A_t$ is an edgeless graph. By \thref{edgeless}, $\beta_{i_t}(A_t,B_t)=1$ precisely when $i_t=0$ and $B_t=\varnothing$, and this is also precisely when $\beta_{i_t}(A_t[B_t],B_t)=1$. Therefore $\beta_i(T,H)=\beta_i(T[H],H)$.
 \end{proof}
 
-\subsection{Classification of full forests}
+\thref{subtree} shows that the nonzero Betti numbers of forests only occur in full subforests. Therefore the problem of computing all Betti numbers of forests is reduced to finding full forests and the right $i$ such that $\beta_i(T,V(T))=1$ when $T$ is full.
+
+\begin{defi}
+    Let $T$ be a forest. Define the \textbf{deletion operation} as: Pick a leaf and denote its neighbor by $v$, then delete the closed neighborhood of $v$ from the tree. By deleting a set of vertices, we mean removing all vertices in this set and all edges with at least one endpoint in this set. This deletion operation is always possible when $T$ is not edgeless.
+\end{defi}
+
+\begin{theorem}
+    Let $T$ be a forest, then $T$ is full if and only if $T$ can be reduced to the empty graph using the deletion operation. When $T$ is full, denote by $N$ the number of deletion operations performed to reduce it to the empty graph, then $\beta_i(T,V(T))=1$ precisely when $i=|V(T)|-N$.
+\end{theorem}
+
+\begin{proof}
+    Similar to the proof of \thref{subtree}, we define the following algorithm. Initialize the $2$-tuple as:
+    \begin{equation*}
+        (i_0,A_0)\coloneq (i,T).
+    \end{equation*}
+    From $(i_t,A_t)$, construct $(i_{t+1},A_{t+1})$ as follows.\\
+    \textbf{Case 1:} $A_t$ is not edgeless. Pick a leaf $x_n$ and its neighbor $x_{n-1}$ in the graph $A_t$, and set
+    \begin{align*}
+        i_{t+1}&\coloneq i_t-\#N_{A_t}(x_{n-1}),\\
+        A_{t+1}&\coloneq A_t[V(A_t)\setminus N_{A_t}(x_{n-1})\cup\{x_{n-1}\}].
+    \end{align*}
+    \textbf{Case 2:} $A_t$ is edgeless. Terminate.
+
+    By \thref{deletion} it is clear that $\beta_{i_t}(A_t,V(A_t))$ stays constant throughout the algorithm. The algorithm must terminate as the number of edges in $A_t$ strictly decreases with every step. Let $N$ be the terminating step, then $A_N$ is an edgeless graph. By \thref{edgeless}, $\beta_{i}(T,V(T))=\beta_{i_N}(A_N,V(A_N))=1$ if and only if the terminating edgeless graph is empty and $i_N=0$. In each step, $i_t$ decreases by $\# N(x_{n-1})$, which is the number of vertices deleted minus 1. Therefore, if $A_N$ is empty then $i-i_N=|V(T)|-N$, and $i_N=0$ means $i=|V(T)|-N$.
+\end{proof}
+
+\paragraph*{Remark} The choices of the leaf is arbitrary in the algorithm of the above proof, but the result implies that the number of steps does not depend on the choices.
+
+Putting together all the results of this section, we have the following theorem.
+
+\begin{theorem}
+    Let $T$ be a forest with $n$ vertices. Let $S=k[x_1,\cdots,x_n]$ and $\mathbf{a}\in\mathbb{N}^n$. Let $H=\mathrm{supp}(\mathbf{a})\subset V(T)$. Then $\beta_{i,\mathbf{a}}(S/I_T)=1$ precisely when all of the following conditions hold, and $\beta_{i,\mathbf{a}}(S/I_T)=0$ otherwise.\\
+    \textbf{(1)} $\mathbf{a}$ is square-free.\\
+    \textbf{(2)} $T[H]$ is full.\\
+    \textbf{(3)} $i=|H|-N$, where $N$ is the number of deletion operations required to reduce $T[H]$ to $\varnothing$.
+\end{theorem}
+
+\subsection{Paths and spiders}
 
 
 
