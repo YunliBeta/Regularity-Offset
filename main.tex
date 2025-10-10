@@ -26,6 +26,26 @@
 
 \setstretch{1.2}
 \maketitle
+\section{Introduction}
+We consider extending the results of Catelnuovo-Mumford regularity of square-free quadratic monomial ideals to a broader type of monomial ideals over a field of characteristic 0. Many papers have investigated the regularity of square-free quadratic monomial ideals CITATION. One can associate a square-free quadratic monomial ideal $I$ a graph $G$, whose vertices correspond to the variables and edges correspond to the generators. Hence, this kind of ideals are often called the edge ideals under this context. In this paper, we pay more attention to generalized edge ideals, which each vertex is corresponding to a monomial rather than a single variable. 
+
+With an application of lcm-lattice \cite{welker1999lcm}, we have shown that the generalized edge ideal is same as adding the degree of variables in the ordinary edge ideal from the view of minimal free resolutions. Then our most fundamental theorem for analyzing the regularity is the following inequality.
+\begin{theorem}
+    Let $I_G$ be the ordinary edge ideal of a graph $G$ and $J_G$ be its edge ideal after adding $N$ degrees. Then
+    \begin{equation*}
+        \mathrm{reg}(I_G) \leqslant \mathrm{reg} (J_G) \leqslant \mathrm{reg} (I_G)+N.
+    \end{equation*}
+\end{theorem}
+
+As we add degrees to variables in the ideal, then the regularity of the ideal often tends to grow. With this observation and the theorem before, we can define the regularity offset of an edge ideal as $\mathrm{reg} (I_G)+N-\mathrm{reg} (J_G)$ and the offset vertices as those vertices in the graph whose corresponding variables cause the regularity offset. Our theorem for the existence of regularity offset, which is a straightforward application of Hochster's formula \cite{hochster1977cohen}.
+
+\begin{theorem}
+    A graph $G$ doesn't have regularity offset if and only if the whole graph contributes to the regularity, which means $\widetilde{H}_{reg(G)-2}\left(\Delta G^c, k\right)$ is non-trivial.
+\end{theorem}
+
+The co-chordal graphs are the graphs whose complement are chordal graphs.
+
+
 
 \section{Background}
 \subsection{Graphs and clique complexes}
@@ -411,7 +431,7 @@ By the definitions of resolution and regularity and the conclusion before, the r
 With this lemma, we can have a topological conclusion for the existence of the regularity offset.
 
 \begin{theorem}\thlabel{wholegraph}
-    A graph $G$ doesn't have regularity offset if and only if the whole graph contributes to the regularity, which means $\widetilde{H}_{reg(G)-2}\left(\Delta G^c, k\right)$ is non-trivial .
+    A graph $G$ doesn't have regularity offset if and only if the whole graph contributes to the regularity, which means $\widetilde{H}_{reg(G)-2}\left(\Delta G^c, k\right)$ is non-trivial.
 \end{theorem}
 
 \begin{proof}
