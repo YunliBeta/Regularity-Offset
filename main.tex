@@ -373,6 +373,10 @@ Let $T$ be a tree and $x,y\in V(T)$. There is a unique path between $x$ and $y$,
     can be obtained from $T$ by performing a certain number of deletion operations (\thref{deletiondef}).
 \end{theorem}
 
+\begin{proof}
+    Begin from $x$ and perform the deletion operation. If a deletion operation results in new leaves appearing, then continue the deletion operation on these new leaves. The only case where no new leaves appear is when we reach a vertex $z$ with $\deg z\neq 2$ and $3\,|\,d(x,z)$.
+\end{proof}
+
 We now use the previous results to classify full paths and full spiders.
 
 \begin{proposition}
