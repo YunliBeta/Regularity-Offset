@@ -43,7 +43,14 @@ As we add degrees to variables in the ideal, then the regularity of the ideal of
     A graph $G$ doesn't have regularity offset if and only if the whole graph contributes to the regularity, which means $\widetilde{H}_{reg(G)-2}\left(\Delta G^c, k\right)$ is non-trivial.
 \end{theorem}
 
-The co-chordal graphs are the graphs whose complement are chordal graphs.
+The co-chordal graphs are the graphs whose complement are chordal graphs. A known conclusion for the co-chordal graphs is that the edge ideal of a co-chordal graph has a linear resolution. Hence, we can have the following theorem that predicts the behavior of regularity offset of co-chordal graphs.
+
+\begin{theorem}
+   Given a co-chordal graph $G$, for a grading $\mathbf{g}$, we use $t_i=\deg x_i-1$ to denote the number of added degrees on each vertex. Then we have
+\begin{equation*}
+    ro(G,\mathbf{g})=\min_{j}\{\sum_{i=1}^{k_j}t_{(j_i)}\}\quad \text{where $\{x_{j_1},x_{j_2},\cdots,x_{j_{k_j}}\}$ forms a minimal cut set.}
+\end{equation*} 
+\end{theorem}
 
 
 
